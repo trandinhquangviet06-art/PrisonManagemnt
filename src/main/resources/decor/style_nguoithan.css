@@ -1,0 +1,219 @@
+/* MÀU SẮC CHỦ ĐẠO TÙY CHỈNH */
+* {
+    -fx-bg-dark: #121418;         /* Màu nền tổng thể cực tối */
+    -fx-bg-panel: #1E2126;        /* Màu nền các hộp / Sidebar */
+    -fx-bg-card: #282C34;         /* Màu nền thẻ thông tin */
+    -fx-text-main: #F3F4F6;       /* Trắng sáng cho text chính */
+    -fx-text-sub: #9CA3AF;        /* Xám nhạt cho text phụ */
+    -fx-accent: #3B82F6;          /* Xanh lam nhấn */
+    -fx-accent-hover: #2563EB;
+    -fx-border: #374151;          /* Viền xám */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.root-pane {
+    -fx-background-color: -fx-bg-dark;
+}
+
+/* --- SIDEBAR & THẺ THÔNG TIN --- */
+.profile-sidebar {
+    -fx-background-color: -fx-bg-panel;
+    -fx-border-color: transparent -fx-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-alignment: top-center;
+}
+
+.section-title {
+    -fx-text-fill: -fx-text-main;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.sub-title {
+    -fx-text-fill: -fx-accent;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 10 0;
+}
+
+.profile-card, .prisoner-card {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 15, 0, 0, 5);
+}
+
+.profile-name {
+    -fx-text-fill: -fx-text-main;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.profile-role {
+    -fx-text-fill: -fx-accent;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.profile-detail {
+    -fx-text-fill: -fx-text-sub;
+    -fx-font-size: 14px;
+}
+
+.btn-logout {
+    -fx-background-color: transparent;
+    -fx-border-color: #EF4444;
+    -fx-text-fill: #EF4444;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+.btn-logout:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+}
+
+/* --- KHU VỰC ĐĂNG KÝ (BÊN PHẢI) --- */
+.main-content {
+    -fx-background-color: -fx-bg-dark;
+}
+
+.booking-section {
+    -fx-background-color: -fx-bg-panel;
+    -fx-background-radius: 12;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 12;
+}
+
+.form-label {
+    -fx-text-fill: -fx-text-sub;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ====================================================
+   --- CSS SỬA LỖI Ô NHẬP LIỆU TRÊN NỀN TỐI --- 
+   ==================================================== */
+
+/* 1. Định dạng chung cho mọi ô nhập liệu */
+.form-control, .text-input, .combo-box {
+    -fx-background-color: -fx-bg-dark;
+    -fx-text-fill: -fx-text-main;
+    -fx-prompt-text-fill: #6B7280;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+}
+
+/* Căn chỉnh lề bên trong cho Textfield và ComboBox */
+.text-field, .combo-box {
+    -fx-padding: 6 10 6 10;
+}
+
+/* 2. FIX TRIỆT ĐỂ LÕI TEXTAREA (Ô Ghi chú) */
+.text-area,
+.text-area .viewport,
+.text-area .content {
+    -fx-background-color: -fx-bg-dark; /* Ép mọi lớp bên trong thành đen */
+}
+.text-area {
+    -fx-text-fill: -fx-text-main; /* Chữ trắng */
+    -fx-padding: 5;
+}
+
+/* 3. FIX COMBOBOX (Hiển thị chữ và mũi tên) */
+.combo-box .list-cell {
+    -fx-text-fill: -fx-text-main;
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: -fx-text-main;
+}
+
+/* 4. FIX POPUP DANH SÁCH (Dropdown & Lịch) */
+.combo-box-popup .list-view, .date-picker-popup {
+    -fx-background-color: -fx-bg-card;
+    -fx-border-color: -fx-border;
+}
+.combo-box-popup .list-cell {
+    -fx-text-fill: -fx-text-main;
+    -fx-padding: 8;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.3);
+}
+
+/* 5. FIX DATEPICKER (Ô nhập ngày tháng) */
+.date-picker > .text-field {
+    -fx-background-color: -fx-bg-dark;
+    -fx-text-fill: -fx-text-main;
+}
+
+/* Hiệu ứng viền xanh khi nhấp chuột vào ô bất kỳ */
+.text-input:focused, .combo-box:focused, .text-area:focused {
+    -fx-border-color: -fx-accent; 
+}
+
+/* ==================================================== */
+
+/* Nút Submit chính */
+.btn-submit {
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 30 10 30;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.btn-submit:hover {
+    -fx-background-color: -fx-accent-hover;
+}
+
+/* --- BẢNG TRẠNG THÁI YÊU CẦU --- */
+.table-view {
+    -fx-background-color: -fx-bg-panel;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.table-view .placeholder .label {
+    -fx-text-fill: -fx-text-sub;
+}
+.table-view .column-header-background {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-color: transparent transparent -fx-border transparent;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -fx-text-sub;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 0 10 0;
+}
+.table-row-cell {
+    -fx-background-color: -fx-bg-panel;
+    -fx-border-color: transparent transparent #2A2E37 transparent;
+    -fx-cell-size: 50px;
+}
+.table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+}
+.table-row-cell:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.08); 
+}
+.table-cell {
+    -fx-text-fill: -fx-text-main;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10 0 10;
+}
+.table-view:focused {
+    -fx-background-color: transparent, -fx-bg-panel; 
+}

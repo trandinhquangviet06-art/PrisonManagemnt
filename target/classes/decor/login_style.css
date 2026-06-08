@@ -1,0 +1,151 @@
+/* ========================================
+   1. NỀN & KHUNG CARD CHÍNH
+   ======================================== */
+.main-root {
+    -fx-background-color: #2b3038; /* Nền xám bao quanh toàn màn hình */
+}
+
+.login-card {
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 30, 0, 0, 10);
+}
+
+/* Nửa bên trái (Tối hơn) */
+.left-pane {
+    -fx-background-color: #1a1e23;
+    -fx-background-radius: 10px 0 0 10px;
+}
+
+/* Nửa bên phải (Sáng hơn một chút) */
+.right-pane {
+    -fx-background-color: #22272e;
+    -fx-background-radius: 0 10px 10px 0;
+}
+
+/* ========================================
+   2. TEXT & TIÊU ĐỀ
+   ======================================== */
+.shield-icon {
+    -fx-font-size: 70px;
+    -fx-text-fill: #95a5a6;
+}
+
+.title-main {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7d8590;
+    -fx-padding: 10px 0 0 0;
+}
+
+.section-header {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7d8590;
+    -fx-font-weight: bold;
+}
+
+/* ========================================
+   3. Ô NHẬP LIỆU (TextFields)
+   ======================================== */
+.input-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #7d8590;
+}
+
+/* Khối giả lập ô nhập liệu */
+.input-box {
+    -fx-background-color: #1a1e23;
+    -fx-border-color: #3d444d;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px 12px;
+}
+
+/* Hiệu ứng sáng viền xanh khi nhấp chuột vào */
+.input-box:focus-within {
+    -fx-border-color: #2f81f7;
+    -fx-effect: dropshadow(three-pass-box, rgba(47, 129, 247, 0.2), 5, 0, 0, 0);
+}
+
+/* Ô nhập liệu thật (Trong suốt để lộ nền đen) */
+.input-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #59636e;
+}
+
+.input-icon {
+    -fx-text-fill: #59636e;
+    -fx-font-size: 14px;
+}
+
+/* Sửa lỗi viền mặc định của JavaFX */
+.input-field:focused {
+    -fx-background-color: transparent;
+}
+
+/* ========================================
+   4. NÚT BẤM VÀ ĐƯỜNG KẺ
+   ======================================== */
+.btn-login {
+    -fx-background-color: #2f81f7;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+}
+
+.btn-login:hover {
+    -fx-background-color: #3b8cf8;
+}
+
+/* Sinh trắc học */
+.divider {
+    -fx-opacity: 0.1;
+}
+
+.divider-text {
+    -fx-font-size: 10px;
+    -fx-text-fill: #59636e;
+}
+
+.bio-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #3d444d;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #7d8590;
+    -fx-font-size: 18px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-cursor: hand;
+}
+
+.bio-btn:hover {
+    -fx-border-color: #2f81f7;
+    -fx-text-fill: #2f81f7;
+}
+
+/* Footer links */
+.link-small {
+    -fx-font-size: 11px;
+    -fx-text-fill: #2f81f7;
+    -fx-cursor: hand;
+}
+
+.link-footer {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7d8590;
+    -fx-cursor: hand;
+}
+
+.link-footer:hover {
+    -fx-text-fill: #ffffff;
+}
