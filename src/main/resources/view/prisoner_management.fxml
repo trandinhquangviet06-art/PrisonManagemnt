@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.PrisonerManagementController">
    <children>
       <Label fx:id="lblTitle1" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="983.0" text="QUẢN LÝ PHẠM NHÂN">
          <font>
@@ -18,9 +17,9 @@
          </font>
       </Label>
       <Label fx:id="timkiem" layoutX="206.0" layoutY="66.0" prefHeight="17.0" prefWidth="137.0" text="Tìm kiếm phạm nhân:" />
-      <TextField fx:id="nhapten" layoutX="431.0" layoutY="62.0" promptText=" Nhập tên hoặc mã phạm nhân" />
-      <Button fx:id="bttimkiem" layoutX="664.0" layoutY="62.0" mnemonicParsing="false" text="Tìm kiếm" />
-      <TableView layoutX="47.0" layoutY="142.0" prefHeight="364.0" prefWidth="904.0">
+      <TextField fx:id="txtTimkiem" layoutX="431.0" layoutY="62.0" promptText=" Nhập tên hoặc mã phạm nhân" />
+      <Button fx:id="bttimkiem" layoutX="664.0" layoutY="62.0" mnemonicParsing="false" onAction="#timKiem" text="Tìm kiếm" />
+      <TableView fx:id="tbPhamNhan" layoutX="47.0" layoutY="142.0" prefHeight="364.0" prefWidth="904.0">
         <columns>
           <TableColumn fx:id="maphamnhan" prefWidth="123.0" text="Mã phạm nhân" />
           <TableColumn fx:id="hoten" prefWidth="207.0" text="Họ tên " />
@@ -32,11 +31,11 @@
       </TableView>
       <HBox layoutX="19.0" layoutY="517.0" prefHeight="105.0" prefWidth="964.0" spacing="180.0">
          <children>
-            <Button fx:id="them" mnemonicParsing="false" text="Thêm " />
-            <Button fx:id="sua" mnemonicParsing="false" text="Sửa" />
-            <Button fx:id="lammoi" mnemonicParsing="false" text="Làm mới" />
-            <Button fx:id="quaylai" mnemonicParsing="false" text="Quay lại" />
-            <Button mnemonicParsing="false" text="Xóa" fx:id="xoa" />
+            <Button fx:id="them" mnemonicParsing="false" onAction="#themPN" text="Thêm " />
+            <Button fx:id="sua" mnemonicParsing="false" onAction="#suaPN" text="Sửa" />
+            <Button fx:id="lammoi" mnemonicParsing="false" onAction="#lamMoi" text="Làm mới" />
+            <Button fx:id="quaylai" mnemonicParsing="false" onAction="#quayLai" text="Quay lại" />
+            <Button mnemonicParsing="false" onAction="#xoaPN" text="Xóa" fx:id="xoa" />
          </children>
       </HBox>
    </children>
