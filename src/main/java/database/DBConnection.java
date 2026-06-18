@@ -17,7 +17,7 @@ public class DBConnection {
 
     public static Connection getConnection() throws SQLException {
         String server = "localhost";
-        String dbName = "QlyNguoiThan";
+        String dbName = "QLNT_HopNhat";
         String user = "sa";
         String pass = "vietvipaz0000";
         String url = "jdbc:sqlserver://" + server + ":1433;"

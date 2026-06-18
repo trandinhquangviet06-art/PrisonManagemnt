@@ -12,8 +12,8 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class TaoMatKhau {
     public static void main(String[] args) {
-        // Sinh mã Hash chuẩn cho mật khẩu "1987"
-        String hashChuan = BCrypt.hashpw("1987", BCrypt.gensalt());
+        
+        String hashChuan = BCrypt.hashpw("123456", BCrypt.gensalt());
         System.out.println("Mã Hash mới của 1987 là:");
         System.out.println(hashChuan);
     }

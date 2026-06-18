@@ -71,10 +71,10 @@ public class controller_nguoiThan implements Initializable{
     }
 
     private void loadThongTinHoSo() {
-        String sql = "Select nt.HoTen as TenNT, nt.relationship, nt.cccd, " +
-                     "pn.HoTen as TenPN, pn.maPrison, pn.khuGiamGiu " +
-                     "from parent nt join prison pn on nt.maPrison=pn.maPrison " +
-                     "where nt.cccd=? ";
+        String sql = "Select nt.HoTen as TenNT, nt.QuanHe, nt.CCCD, " +
+                     "pn.HoTen as TenPN, pn.MaPhamNhan, pn.KhuGiamGiu " +
+                     "from NguoiThan nt join PhamNhan pn on nt.MaPhamNhan=pn.MaPhamNhan " +
+                     "where nt.CCCD=? ";
         
         
         try {
@@ -83,12 +83,12 @@ public class controller_nguoiThan implements Initializable{
             pst.setString(1, cccd_NT);
             ResultSet rs=pst.executeQuery();
             if(rs.next()){
-                txtMaTu.setText("Ten Pham Nhan"+rs.getString("TenPN"));
+                txtTenPhamNhan.setText(rs.getString("TenPN"));
                 txtTenNguoiThan.setText(rs.getString("TenNT"));
-                txtQuanHe.setText("Quan He: "+ rs.getString("relationship"));
-                txtCCCD.setText("CCCD: "+ rs.getString("cccd"));
-                txtMaTu.setText("Ma tu nhan"+ rs.getString("maPrison"));
-                txtKhuGiam.setText("khu giam giu"+ rs.getString("khuGiamGiu"));
+                txtQuanHe.setText("Quan He: "+ rs.getString("QuanHe"));
+                txtCCCD.setText("CCCD: "+ rs.getString("CCCD"));
+                txtMaTu.setText("Ma tu nhan"+ rs.getString("MaPhamNhan"));
+                txtKhuGiam.setText("khu giam giu"+ rs.getString("KhuGiamGiu"));
                 
                 
             }
@@ -113,7 +113,7 @@ public class controller_nguoiThan implements Initializable{
             System.out.println("Ngay tham phai lon hon hoac bang hien tai");
             return;
         }
-        String sql="insert into YeuCauThamGap (cccdNguoiThan,ngayTham,caTham,ghiChu,ngayTao,trangThai) values(?,?,?,?,getDate(),N'Chờ Duyệt')";
+        String sql="insert into YeuCauThamGap (CCCDNguoiThan,NgayTham,CaTham,GhiChu,NgayTao,TrangThai) values(?,?,?,?,getDate(),N'Chờ Duyệt')";
         try {
             Connection conn=DBConnection.getConnection();
             PreparedStatement pst=conn.prepareStatement(sql);
@@ -148,8 +148,8 @@ public class controller_nguoiThan implements Initializable{
        String ngayTao;
        String trangThai;
        String lyDoPhanHoi;
-       String sql="select maYC,ngayTham,caTham,ngayTao,trangThai,lyDoPhanHoi from YeuCauThamGap "+
-               "where cccdNguoiThan=?";
+       String sql="select MaYC,NgayTham,CaTham,NgayTao,TrangThai,LyDoPhanHoi from YeuCauThamGap "+
+               "where CCCDNguoiThan=?";
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             Connection con=DBConnection.getConnection();

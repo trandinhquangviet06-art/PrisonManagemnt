@@ -44,7 +44,7 @@ public class controlLoginUI {
             conn = DBConnection.getConnection();
             if (conn != null) {
                 TaiKhoanDao dao=new TaiKhoanDao();
-                if (dao.KiemTraTaiKhoan(user, pass,"Nguoi Than" )) {
+                if (dao.KiemTraTaiKhoan(user, pass,"NguoiThan" )) {
                     navigator.chuyenManHinh(actionEvent, "/view/UI_NguoiThan.fxml", "TAI KHOAN NGUOI THAN","/decor/style_nguoithan.css");
                     
                    
@@ -63,8 +63,8 @@ public class controlLoginUI {
                   al.setContentText("Login Successfull");
                   al.showAndWait();
                 }
-                else if(dao.KiemTraTaiKhoan(user, pass, "Nhan Vien")){
-                    navigator.chuyenManHinh(actionEvent, "UI nhan vien", "Tai Khoan Nhan Vien", "css cho ui nhan vien");
+                else if(dao.KiemTraTaiKhoan(user, pass, "QuanNguc")){
+                    navigator.chuyenManHinh(actionEvent, "/view/guard_dashboard.fxml", "Tai Khoan Nhan Vien", "");
                     Alert al=new Alert(Alert.AlertType.INFORMATION);
                     al.setTitle("Login Info");
                     al.setContentText("Login Successfull");
