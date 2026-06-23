@@ -66,7 +66,7 @@ public class Prisoner {
         return khuGiamGiu;
     }
 
-    public void setKhuGiam(String khuGiam) {
+    public void setKhuGiamGiu(String khuGiamGiu) {
         this.khuGiamGiu = khuGiamGiu;
     }
 

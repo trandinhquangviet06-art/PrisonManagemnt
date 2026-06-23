@@ -57,13 +57,13 @@ public class controlLoginUI {
                     
                 }
                 else if(dao.KiemTraTaiKhoan(user, pass, "admin")){
-                  navigator.chuyenManHinh(actionEvent, "nhap dia chi admin tai day", "TAI KHOAN ADMIN", "dia chi file css trang tri UI admin");
-                  Alert al=new Alert(Alert.AlertType.INFORMATION);
-                  al.setTitle("Login Info");
-                  al.setContentText("Login Successfull");
-                  al.showAndWait();
+                    navigator.chuyenManHinh(actionEvent, "/view/admin_dashboard.fxml", "Hệ Thống Quản Lý Cục Trưởng", "");
+                    Alert al=new Alert(Alert.AlertType.INFORMATION);
+                    al.setTitle("Login Info");
+                    al.setContentText("Login Successfull");
+                    al.showAndWait();
                 }
-                else if(dao.KiemTraTaiKhoan(user, pass, "QuanNguc")){
+                else if(dao.KiemTraTaiKhoan(user, pass, "guard")){
                     navigator.chuyenManHinh(actionEvent, "/view/guard_dashboard.fxml", "Tai Khoan Nhan Vien", "");
                     Alert al=new Alert(Alert.AlertType.INFORMATION);
                     al.setTitle("Login Info");

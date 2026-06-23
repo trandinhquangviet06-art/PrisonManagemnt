@@ -89,9 +89,9 @@ public class PrisonerDao {
                 + "hoTen = ?, "
                 + "ngaySinh = ?, "
                 + "toiDanh = ?, "
-                + "khuGiam = ?, "
-                + "trangThai = ? "
-                + "hinhAnhn = ? "
+                + "KhuGiamGiu = ?, "
+                + "trangThai = ?, "
+                + "hinhAnh = ? "
                 + "WHERE maPhamNhan = ?";
 
         Connection conn = DBConnection.getConnection();
@@ -136,7 +136,7 @@ public class PrisonerDao {
                     rs.getString("hoTen"),
                     rs.getString("ngaySinh"),
                     rs.getString("toiDanh"),
-                    rs.getString("khuGiam"),
+                    rs.getString("khuGiamGiu"),
                     rs.getString("trangThai"),
                     rs.getString("hinhAnh")
             );
