@@ -1,0 +1,95 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    
+    Author     : Admin
+*/
+.root {
+    -fx-background-color: #f4f6f9;
+    -fx-font-family: "Segoe UI";
+}
+
+.title-label {
+    -fx-text-fill: #1f2d3d;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #1f2d3d;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #cfd8dc;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-pref-height: 32px;
+    -fx-padding: 0 10px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7px;
+    -fx-padding: 6px 11px;
+    -fx-cursor: hand;
+    -fx-min-width: 80px;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button:pressed {
+    -fx-background-color: #1f618d;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #cfd8dc;
+    -fx-border-radius: 6px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #1f497d;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #eaf3fb;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.back-button {
+    -fx-background-color: #7f8c8d;
+}
+
+.back-button:hover {
+    -fx-background-color: #636e72;
+}

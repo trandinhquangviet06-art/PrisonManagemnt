@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.PrisonerManagementController">
+   <children>
+      <Label fx:id="lblTitle1" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="983.0" text="QUẢN LÝ PHẠM NHÂN">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="timkiem" layoutX="206.0" layoutY="66.0" prefHeight="17.0" prefWidth="137.0" text="Tìm kiếm phạm nhân:" />
+      <TextField fx:id="txtTimkiem" layoutX="431.0" layoutY="62.0" promptText=" Nhập tên hoặc mã phạm nhân" />
+      <Button fx:id="bttimkiem" layoutX="664.0" layoutY="62.0" mnemonicParsing="false" onAction="#timKiem" text="Tìm kiếm" />
+      <TableView fx:id="tbPhamNhan" layoutX="47.0" layoutY="142.0" prefHeight="364.0" prefWidth="904.0">
+        <columns>
+          <TableColumn fx:id="maphamnhan" prefWidth="123.0" text="Mã phạm nhân" />
+          <TableColumn fx:id="hoten" prefWidth="207.0" text="Họ tên " />
+            <TableColumn fx:id="ngaysinh" prefWidth="151.0" text="Ngày sinh" />
+            <TableColumn fx:id="toidanh" minWidth="0.0" prefWidth="149.0" text="Tội danh" />
+            <TableColumn fx:id="khugiam" prefWidth="133.0" text="Khu giam giữ" />
+            <TableColumn fx:id="trangthai" prefWidth="140.0" text="Trạng thái" />
+        </columns>
+      </TableView>
+      <HBox layoutX="19.0" layoutY="517.0" prefHeight="105.0" prefWidth="964.0" spacing="180.0">
+         <children>
+            <Button fx:id="them" mnemonicParsing="false" onAction="#themPN" text="Thêm " />
+            <Button fx:id="sua" mnemonicParsing="false" onAction="#suaPN" text="Sửa" />
+            <Button fx:id="lammoi" mnemonicParsing="false" onAction="#lamMoi" text="Làm mới" />
+            <Button fx:id="quaylai" mnemonicParsing="false" onAction="#quayLai" text="Quay lại" />
+            <Button mnemonicParsing="false" onAction="#xoaPN" text="Xóa" fx:id="xoa" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

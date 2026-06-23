@@ -41,7 +41,7 @@ public class GuardDashboardController {
     }
 
     @FXML
-    private void dangXuat(ActionEvent event) {
+    private void Dangxuat(ActionEvent event) {
         try {
             navigator.chuyenManHinh(
                     event,
