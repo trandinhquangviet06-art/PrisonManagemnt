@@ -27,7 +27,7 @@ public class TaiKhoanDao {
             ResultSet rs = null;
             
             if (conn != null) {
-                String sql = "select * from taikhoan where taikhoan=? and vaitro=?";
+                String sql = "select * from taikhoan where TaiKhoan=? and VaiTro=?";
                 pst = conn.prepareStatement(sql);
                 
                 
@@ -36,15 +36,15 @@ public class TaiKhoanDao {
                 rs = pst.executeQuery();
                 
                 if (rs.next()) {
-                    String passDB = rs.getString("pass");
+                    String passDB = rs.getString("MatKhau");
                     if(BCrypt.checkpw(pass, passDB)){
                         isLoginSuccess=true;
-                        String query_cccdNT="select nt.cccd from parent as nt join prison as pn on pn.maPrison=nt.maPrison where taikhoan=?";
+                        String query_cccdNT="select nt.CCCD from NguoiThan as nt join PhamNhan as pn on pn.MaPhamNhan=nt.MaPhamNhan where TaiKhoan=?";
                         PreparedStatement pst2=conn.prepareStatement(query_cccdNT);
                         pst2.setString(1, taikhoan);
                         ResultSet rs2=pst2.executeQuery();
                         if(rs2.next()){
-                            userNT_session.setCurrentCCCD(rs2.getString("cccd"));
+                            userNT_session.setCurrentCCCD(rs2.getString("CCCD"));
                         }
                     }
                 }

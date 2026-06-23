@@ -29,7 +29,7 @@
                <children>
                   <!-- Gắn ID cho ImageView để set ảnh trong code Java -->
                   <ImageView fx:id="imgNguoiThan" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="txtTenNguoiThan" styleClass="profile-name" text="Nguyễn Thị A" />
+                  <Label fx:id="txtTenNguoiThan" alignment="CENTER" prefHeight="18.0" prefWidth="180.0" styleClass="profile-name" text="Nguyễn Thị A" />
                   <Label fx:id="txtQuanHe" styleClass="profile-role" text="Quan hệ: Mẹ ruột" />
                   <Label fx:id="txtCCCD" styleClass="profile-detail" text="CCCD: 001122334455" />
                </children>
@@ -50,7 +50,7 @@
             <VBox alignment="CENTER" spacing="10.0" styleClass="prisoner-card">
                <children>
                   <ImageView fx:id="imgTuNhan" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="txtTenPhamNhan" styleClass="profile-name" text="Trần Văn B" />
+                  <Label fx:id="txtTenPhamNhan" alignment="CENTER" prefHeight="18.0" prefWidth="183.0" styleClass="profile-name" text="Trần Văn B" />
                   <Label fx:id="txtMaTu" styleClass="profile-detail" text="Mã số tù: TN-98765" />
                   <Label fx:id="txtKhuGiam" styleClass="profile-detail" text="Khu giam giữ: K1 - Buồng 05" />
                </children>
