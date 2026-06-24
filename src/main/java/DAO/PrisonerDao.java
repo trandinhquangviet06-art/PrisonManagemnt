@@ -89,9 +89,9 @@ public class PrisonerDao {
                 + "hoTen = ?, "
                 + "ngaySinh = ?, "
                 + "toiDanh = ?, "
-                + "khuGiam = ?, "
-                + "trangThai = ? "
-                + "hinhAnhn = ? "
+                + "khuGiamGiu = ?, "
+                + "trangThai = ?, "
+                + "hinhAnh = ? "
                 + "WHERE maPhamNhan = ?";
 
         Connection conn = DBConnection.getConnection();
@@ -102,8 +102,8 @@ public class PrisonerDao {
         pst.setString(3, prisoner.getToiDanh());
         pst.setString(4, prisoner.getKhuGiamGiu());
         pst.setString(5, prisoner.getTrangThai());
-        pst.setString(6, prisoner.getMaPhamNhan());
-        pst.setString(7, prisoner.getHinhAnh());
+        pst.setString(6, prisoner.getHinhAnh());
+        pst.setString(7, prisoner.getMaPhamNhan());
         return pst.executeUpdate() > 0;
     }
 
@@ -136,7 +136,7 @@ public class PrisonerDao {
                     rs.getString("hoTen"),
                     rs.getString("ngaySinh"),
                     rs.getString("toiDanh"),
-                    rs.getString("khuGiam"),
+                    rs.getString("khuGiamGiu"),
                     rs.getString("trangThai"),
                     rs.getString("hinhAnh")
             );

@@ -1,7 +1,9 @@
 com\prison\ptpmud\Controller\controller_nguoiThan.class
+com\prison\ptpmud\Controller\DonDuyetThamGap.class
 com\prison\ptpmud\Main\launch.class
 DAO\TaiKhoanDao.class
 com\prison\ptpmud\Controller\AddPrisonerController.class
+com\prison\ptpmud\Controller\DuyetThamGap.class
 com\prison\ptpmud\Main\mainAppLoginUI.class
 DAO\PrisonerDao.class
 com\prison\ptpmud\Controller\GuardDashboardController.class

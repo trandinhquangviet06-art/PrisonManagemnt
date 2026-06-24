@@ -8,28 +8,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.prison.ptpmud.Controller.VisitRequestController.">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.DuyetThamGap">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="23.0" prefHeight="17.0" prefWidth="987.0" text="DANH SÁCH YÊU CẦU THĂM GẶP CHỜ DUYỆT">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="95.0" layoutY="100.0" prefHeight="389.0" prefWidth="808.0">
+      <TableView fx:id="BangThamGap" layoutX="23.0" layoutY="105.0" prefHeight="389.0" prefWidth="808.0">
         <columns>
-          <TableColumn prefWidth="122.0" text="Người thân" />
-          <TableColumn prefWidth="114.0" text="Quan hệ " />
-            <TableColumn prefWidth="112.0" text="Mã phạm nhân" />
-            <TableColumn prefWidth="191.0" text="Tên phạm nhân" />
-            <TableColumn prefWidth="135.0" text="Ngày hẹn " />
-            <TableColumn prefWidth="132.0" text="Giờ hẹn" />
+          <TableColumn fx:id="lblNguoiThan" prefWidth="122.0" text="Người thân" />
+          <TableColumn fx:id="lblQuanHe" prefWidth="114.0" text="Quan hệ " />
+            <TableColumn fx:id="lblMaPhamNhan" prefWidth="112.0" text="Mã phạm nhân" />
+            <TableColumn fx:id="lblTenPhamNhan" prefWidth="191.0" text="Tên phạm nhân" />
+            <TableColumn fx:id="lblNgayHen" prefWidth="135.0" text="Ngày hẹn " />
+            <TableColumn fx:id="lblGioHen" prefWidth="132.0" text="Giờ hẹn" />
         </columns>
       </TableView>
       <HBox layoutX="49.0" layoutY="489.0" prefHeight="100.0" prefWidth="905.0">
          <children>
-            <Button mnemonicParsing="false" text="Chấp nhận " />
-            <Button mnemonicParsing="false" text="Từ chối" />
+            <Button mnemonicParsing="false" onAction="#chapNhanThamGap" text="Chấp nhận " />
+            <Button mnemonicParsing="false" onAction="#tuChoiThamGap" text="Từ chối" />
          </children>
       </HBox>
    </children>
