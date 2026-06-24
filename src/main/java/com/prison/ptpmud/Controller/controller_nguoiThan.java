@@ -84,6 +84,10 @@ public class controller_nguoiThan implements Initializable{
             ResultSet rs=pst.executeQuery();
             if(rs.next()){
                 txtTenPhamNhan.setText(rs.getString("TenPN"));
+
+
+                txtMaTu.setText(rs.getString("KhuGiamGiu"));
+
                 txtTenNguoiThan.setText(rs.getString("TenNT"));
                 txtQuanHe.setText("Quan He: "+ rs.getString("QuanHe"));
                 txtCCCD.setText("CCCD: "+ rs.getString("CCCD"));
@@ -149,7 +153,10 @@ public class controller_nguoiThan implements Initializable{
        String trangThai;
        String lyDoPhanHoi;
        String sql="select MaYC,NgayTham,CaTham,NgayTao,TrangThai,LyDoPhanHoi from YeuCauThamGap "+
+
                "where CCCDNguoiThan=?";
+
+            
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             Connection con=DBConnection.getConnection();
@@ -157,12 +164,12 @@ public class controller_nguoiThan implements Initializable{
             pst.setString(1, cccd_NT);
             ResultSet rs=pst.executeQuery();
             while(rs.next()){
-                maYC=String.valueOf(rs.getInt("maYC"));
-                ngayTham=rs.getDate("ngayTham").toLocalDate().format(dtf);
-                caTham=rs.getString("caTham");
-                ngayTao=rs.getDate("ngayTao").toLocalDate().format(dtf);
-                trangThai=rs.getString("trangThai");
-                lyDoPhanHoi=rs.getString("lyDoPhanHoi");
+                maYC=String.valueOf(rs.getInt("MaYC"));
+                ngayTham=rs.getDate("NgayTham").toLocalDate().format(dtf);
+                caTham=rs.getString("CaTham");
+                ngayTao=rs.getDate("NgayTao").toLocalDate().format(dtf);
+                trangThai=rs.getString("TrangThai");
+                lyDoPhanHoi=rs.getString("LyDoPhanHoi");
                 if(lyDoPhanHoi==null) lyDoPhanHoi="Dang Cho Can Bo Xu Li";
                 danhSachDon.add(new DonXinTham(maYC,ngayTham,caTham,ngayTao,trangThai,lyDoPhanHoi));
             }

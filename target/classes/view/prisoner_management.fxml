@@ -25,7 +25,11 @@
           <TableColumn fx:id="hoten" prefWidth="207.0" text="Họ tên " />
             <TableColumn fx:id="ngaysinh" prefWidth="151.0" text="Ngày sinh" />
             <TableColumn fx:id="toidanh" minWidth="0.0" prefWidth="149.0" text="Tội danh" />
+<<<<<<< HEAD
             <TableColumn fx:id="khugiam" prefWidth="133.0" text="Khu giam " />
+=======
+            <TableColumn fx:id="khugiam" prefWidth="133.0" text="Khu giam giữ" />
+>>>>>>> dung/guard
             <TableColumn fx:id="trangthai" prefWidth="140.0" text="Trạng thái" />
         </columns>
       </TableView>

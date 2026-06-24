@@ -64,7 +64,9 @@ public class controlLoginUI {
                   al.showAndWait();
                 }
                 else if(dao.KiemTraTaiKhoan(user, pass, "QuanNguc")){
-                    navigator.chuyenManHinh(actionEvent, "/view/guard_dashboard.fxml", "Tai Khoan Nhan Vien", "");
+
+                    navigator.chuyenManHinh(actionEvent, "/view/guard_dashboard.fxml", "Tai Khoan Nhan Vien", "/decor/guard_dash.css");
+
                     Alert al=new Alert(Alert.AlertType.INFORMATION);
                     al.setTitle("Login Info");
                     al.setContentText("Login Successfull");
