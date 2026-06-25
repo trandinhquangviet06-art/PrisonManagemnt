@@ -76,7 +76,7 @@ public class GuardDao {
             pst1.setString(1, username);
             String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
             pst1.setString(2, hashedPassword);
-            pst1.setString(3, "guard");
+            pst1.setString(3, "QuanNguc");
             pst1.executeUpdate();
 
             // 2. Insert into QuanNguc
@@ -141,7 +141,35 @@ public class GuardDao {
             pst.setString(1, username);
             String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
             pst.setString(2, hashedPassword);
-            pst.setString(3, "guard");
+            pst.setString(3, "QuanNguc");
+            return pst.executeUpdate() > 0;
+        }
+    }
+
+    public boolean insertGuard(Guard guard) throws SQLException {
+        String sql = "INSERT INTO QuanNguc (MaQN, HoTen, NgaySinh, GioiTinh, SoDienThoai, HinhAnh) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setString(1, guard.getMaQN());
+            pst.setString(2, guard.getHoTen());
+            pst.setDate(3, new java.sql.Date(guard.getNgaySinh().getTime()));
+            pst.setString(4, guard.getGioiTinh());
+            pst.setString(5, guard.getSoDienThoai());
+            pst.setString(6, guard.getHinhAnh());
+            return pst.executeUpdate() > 0;
+        }
+    }
+
+    public boolean updateGuard(Guard guard) throws SQLException {
+        String sql = "UPDATE QuanNguc SET HoTen = ?, NgaySinh = ?, GioiTinh = ?, SoDienThoai = ?, HinhAnh = ? WHERE MaQN = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setString(1, guard.getHoTen());
+            pst.setDate(2, new java.sql.Date(guard.getNgaySinh().getTime()));
+            pst.setString(3, guard.getGioiTinh());
+            pst.setString(4, guard.getSoDienThoai());
+            pst.setString(5, guard.getHinhAnh());
+            pst.setString(6, guard.getMaQN());
             return pst.executeUpdate() > 0;
         }
     }

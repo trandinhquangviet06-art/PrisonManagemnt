@@ -20,7 +20,7 @@
                 
                 <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #fcfcfc; -fx-padding: 10; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
                     <StackPane style="-fx-border-color: #bdc3c7; -fx-border-width: 1; -fx-background-color: #f5f6fa;" prefWidth="110" prefHeight="130" maxWidth="110" maxHeight="130">
-                        <ImageView fx:id="imgAvatar" fitWidth="108" fitHeight="128" pickOnBounds="true" preserveRatio="false" />
+                        <ImageView fx:id="imgAvatar" fitWidth="108" fitHeight="128" pickOnBounds="true" preserveRatio="true" />
                     </StackPane>
                     <Button text="Chọn ảnh hồ sơ" onAction="#handleChooseImage" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 11px; -fx-cursor: hand;" />
                 </VBox>

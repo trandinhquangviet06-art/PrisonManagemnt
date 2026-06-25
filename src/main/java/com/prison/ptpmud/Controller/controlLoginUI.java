@@ -58,10 +58,6 @@ public class controlLoginUI {
                 }
                 else if(dao.KiemTraTaiKhoan(user, pass, "admin")){
                   navigator.chuyenManHinh(actionEvent, "/view/admin_dashboard.fxml", "TAI KHOAN ADMIN", "/decor/admin_dashboard.css");
-                  Alert al=new Alert(Alert.AlertType.INFORMATION);
-                  al.setTitle("Login Info");
-                  al.setContentText("Login Successfull");
-                  al.showAndWait();
                 }
                 else if(dao.KiemTraTaiKhoan(user, pass, "QuanNguc")){
 

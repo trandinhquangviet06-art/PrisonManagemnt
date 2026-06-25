@@ -18,7 +18,7 @@ public class AdminDashboardController {
 
     @FXML
     void handleOpenPrisonerMgmt(ActionEvent event) {
-        changeScene(event, "/view/prisoner_management.fxml", "Quản Lý Phạm Nhân");
+        changeScene(event, "/view/prisoner_mgmt.fxml", "Quản Lý Phạm Nhân");
     }
 
     @FXML

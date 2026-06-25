@@ -4,6 +4,8 @@ import DAO.GuardDao;
 import com.prison.ptpmud.Model.Guard;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +21,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import java.io.File;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -62,6 +67,7 @@ public class GuardManagementController {
     private ImageView imgAvatar;
 
     private GuardDao guardDao = new GuardDao();
+    private String currentImagePath = "";
 
     @FXML
     public void initialize() {
@@ -70,6 +76,31 @@ public class GuardManagementController {
         colDob.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
         colGender.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("soDienThoai"));
+
+        tvGuards.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                txtId.setText(newSelection.getMaQN());
+                txtName.setText(newSelection.getHoTen());
+                if (newSelection.getNgaySinh() != null) {
+                    txtDob.setText(new SimpleDateFormat("yyyy-MM-dd").format(newSelection.getNgaySinh()));
+                } else {
+                    txtDob.clear();
+                }
+                txtGender.setText(newSelection.getGioiTinh());
+                txtPhone.setText(newSelection.getSoDienThoai());
+
+                currentImagePath = newSelection.getHinhAnh() != null ? newSelection.getHinhAnh() : "";
+                if (!currentImagePath.isEmpty()) {
+                    try {
+                        imgAvatar.setImage(new Image(new File(currentImagePath).toURI().toString()));
+                    } catch (Exception e) {
+                        imgAvatar.setImage(null);
+                    }
+                } else {
+                    imgAvatar.setImage(null);
+                }
+            }
+        });
 
         loadData();
     }
@@ -85,17 +116,84 @@ public class GuardManagementController {
 
     @FXML
     private void handleChooseImage(ActionEvent event) {
-        // Implement logic to pick image
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Chọn ảnh hồ sơ quản ngục");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        File selectedFile = fileChooser.showOpenDialog(txtId.getScene().getWindow());
+        if (selectedFile != null) {
+            currentImagePath = selectedFile.getAbsolutePath();
+            imgAvatar.setImage(new Image(selectedFile.toURI().toString()));
+        }
     }
 
     @FXML
     private void handleAdd(ActionEvent event) {
-        // Implement logic to add a new guard
+        String id = txtId.getText().trim();
+        String name = txtName.getText().trim();
+        String dobStr = txtDob.getText().trim();
+        String gender = txtGender.getText().trim();
+        String phone = txtPhone.getText().trim();
+
+        if (id.isEmpty() || name.isEmpty() || dobStr.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng nhập Mã, Họ tên và Ngày sinh!");
+            return;
+        }
+
+        try {
+            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(dobStr);
+            Guard guard = new Guard(id, name, dob, gender, phone, currentImagePath);
+            if (guardDao.insertGuard(guard)) {
+                showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm quản ngục thành công!");
+                loadData();
+                handleClear(event);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thất bại!");
+            }
+        } catch (ParseException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi định dạng", "Ngày sinh phải có định dạng YYYY-MM-DD");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi CSDL", "Lỗi: " + e.getMessage());
+        }
     }
 
     @FXML
     private void handleUpdate(ActionEvent event) {
-        // Implement logic to update selected guard
+        Guard selected = tvGuards.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng chọn quản ngục cần cập nhật!");
+            return;
+        }
+
+        String name = txtName.getText().trim();
+        String dobStr = txtDob.getText().trim();
+        String gender = txtGender.getText().trim();
+        String phone = txtPhone.getText().trim();
+
+        if (name.isEmpty() || dobStr.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng nhập Họ tên và Ngày sinh!");
+            return;
+        }
+
+        try {
+            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(dobStr);
+            Guard guard = new Guard(selected.getMaQN(), name, dob, gender, phone, currentImagePath);
+            
+            boolean isUpdated = guardDao.updateGuard(guard);
+            if (isUpdated) {
+                showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã cập nhật quản ngục thành công!");
+                loadData();
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Lỗi", "Cập nhật thất bại!");
+            }
+        } catch (ParseException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi định dạng", "Ngày sinh phải có định dạng YYYY-MM-DD");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi CSDL", "Lỗi: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -105,6 +203,9 @@ public class GuardManagementController {
         txtDob.clear();
         txtGender.clear();
         txtPhone.clear();
+        imgAvatar.setImage(null);
+        currentImagePath = "";
+        tvGuards.getSelectionModel().clearSelection();
     }
 
     @FXML
