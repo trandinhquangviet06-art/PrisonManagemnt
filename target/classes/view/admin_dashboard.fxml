@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/main.css" style="-fx-background-color: #1e272e;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.AdminDashboardController">
+    <left>
+        <VBox spacing="15" style="-fx-background-color: #11171a; -fx-padding: 30 15; -fx-border-color: transparent #d4af37 transparent transparent; -fx-border-width: 2;" prefWidth="260">
+            <Label text="TỔNG CỤC TRƯỞNG" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #d4af37;" alignment="CENTER" maxWidth="Infinity"/>
+            <Separator style="-fx-background-color: #2c3e50;"/>
+            
+            <Button text="🏠 Bảng Điều Khiển" maxWidth="Infinity" style="-fx-background-color: #d4af37; -fx-text-fill: #11171a; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 20;"/>
+            <Button text="👥 Quản Lý Tội Nhân" onAction="#handleOpenPrisonerMgmt" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #aec1c2; -fx-alignment: CENTER_LEFT; -fx-padding: 12 20; -fx-cursor: hand;"/>
+            <Button text="👮 Quản Lý Quản Ngục" onAction="#handleOpenGuardMgmt" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #aec1c2; -fx-alignment: CENTER_LEFT; -fx-padding: 12 20; -fx-cursor: hand;"/>
+            
+            <Button text="🔑 Cấp Tài Khoản" onAction="#handleOpenCreateAccount" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #aec1c2; -fx-alignment: CENTER_LEFT; -fx-padding: 12 20; -fx-cursor: hand;"/>
+            
+            <Region VBox.vgrow="ALWAYS" /> 
+            <Button text="🔒 ĐĂNG XUẤT" onAction="#handleLogout" maxWidth="Infinity" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox spacing="30" style="-fx-padding: 40;">
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <VBox>
+                    <Label text="TRUNG TÂM ĐIỀU HÀNH TỔNG CỤC" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+                    <Label text="Hệ thống giám sát tối cao - Phân quyền quản trị" style="-fx-font-size: 14px; -fx-text-fill: #bdc5c5;"/>
+                </VBox>
+            </HBox>
+            
+            <HBox spacing="25">
+                <VBox alignment="CENTER" spacing="15" prefWidth="300" prefHeight="260" style="-fx-background-color: #2c3e50; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);">
+                    <Label text="👥" style="-fx-font-size: 50px;"/>
+                    <Label text="Quản Lý Tội Nhân" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Xem danh sách, kiểm tra hồ sơ lý lịch và trạng thái cải tạo (CV)." wrapText="true" style="-fx-text-fill: #bdc3c7;" alignment="CENTER" textAlignment="CENTER"/>
+                    <Button text="Mở Sổ Quản Lý ➔" onAction="#handleOpenPrisonerMgmt" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="15" prefWidth="300" prefHeight="260" style="-fx-background-color: #2c3e50; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);">
+                    <Label text="👮" style="-fx-font-size: 50px;"/>
+                    <Label text="Quản Lý Quản Ngục" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Thêm mới, xóa và kiểm tra danh sách tài khoản cán bộ trực ban." wrapText="true" style="-fx-text-fill: #bdc3c7;" alignment="CENTER" textAlignment="CENTER"/>
+                    <Button text="Quản Lý Cán Bộ ➔" onAction="#handleOpenGuardMgmt" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="15" prefWidth="300" prefHeight="260" style="-fx-background-color: #2c3e50; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);">
+                    <Label text="🔑" style="-fx-font-size: 50px;"/>
+                    <Label text="Cấp Tài Khoản" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Khởi tạo tài khoản đăng nhập hệ thống và cấp mật khẩu cho cán bộ." wrapText="true" style="-fx-text-fill: #bdc3c7;" alignment="CENTER" textAlignment="CENTER"/>
+                    <Button text="Cấp Tài Khoản ➔" onAction="#handleOpenCreateAccount" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
