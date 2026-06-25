@@ -89,7 +89,9 @@ public class PrisonerDao {
                 + "hoTen = ?, "
                 + "ngaySinh = ?, "
                 + "toiDanh = ?, "
+
                 + "khuGiamGiu = ?, "
+
                 + "trangThai = ?, "
                 + "hinhAnh = ? "
                 + "WHERE maPhamNhan = ?";

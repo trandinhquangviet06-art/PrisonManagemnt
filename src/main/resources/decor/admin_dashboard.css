@@ -1,0 +1,177 @@
+/* ========================================
+   ADMIN DASHBOARD - PREMIUM DARK THEME
+   Tông màu: Dark Navy + Gold Accent
+   ======================================== */
+
+/* --- 1. NỀN TỔNG THỂ --- */
+.root-admin {
+    -fx-background-color: #1e272e;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* --- 2. SIDEBAR (Thanh menu bên trái) --- */
+.sidebar {
+    -fx-background-color: #11171a;
+    -fx-padding: 30 15;
+    -fx-border-color: transparent #d4af37 transparent transparent;
+    -fx-border-width: 0 2 0 0;
+}
+
+.sidebar-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d4af37;
+    -fx-alignment: CENTER;
+}
+
+.sidebar-separator {
+    -fx-background-color: #2c3e50;
+}
+
+/* --- 3. NÚT MENU SIDEBAR --- */
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aec1c2;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+}
+
+.menu-btn:hover {
+    -fx-background-color: rgba(212, 175, 55, 0.12);
+    -fx-text-fill: #d4af37;
+}
+
+.menu-btn:pressed {
+    -fx-background-color: rgba(212, 175, 55, 0.25);
+}
+
+/* Nút đang được chọn (active) */
+.menu-btn-active {
+    -fx-background-color: #d4af37;
+    -fx-text-fill: #11171a;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20;
+    -fx-background-radius: 8;
+}
+
+/* --- 4. NÚT ĐĂNG XUẤT --- */
+.btn-logout {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.btn-logout:hover {
+    -fx-background-color: #e74c3c;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 10, 0, 0, 3);
+}
+
+.btn-logout:pressed {
+    -fx-background-color: #a93226;
+}
+
+/* --- 5. KHU VỰC NỘI DUNG CHÍNH --- */
+.content-area {
+    -fx-padding: 40;
+}
+
+/* --- 6. TIÊU ĐỀ TRANG --- */
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #8a9ba5;
+}
+
+/* --- 7. DASHBOARD CARD --- */
+.dashboard-card {
+    -fx-background-color: #2c3e50;
+    -fx-background-radius: 12;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 12, 0, 0, 5);
+    -fx-cursor: hand;
+}
+
+.dashboard-card:hover {
+    -fx-background-color: #34495e;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 18, 0, 0, 8);
+}
+
+/* Icon lớn trên card */
+.card-icon {
+    -fx-font-size: 50px;
+}
+
+/* Tên card */
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+/* Mô tả card */
+.card-description {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 13px;
+    -fx-wrap-text: true;
+}
+
+/* --- 8. NÚT HÀNH ĐỘNG TRÊN CARD --- */
+.card-btn-blue {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 22;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.card-btn-blue:hover {
+    -fx-background-color: #2e86c1;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.4), 8, 0, 0, 3);
+}
+
+.card-btn-green {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 22;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.card-btn-green:hover {
+    -fx-background-color: #229954;
+    -fx-effect: dropshadow(three-pass-box, rgba(39, 174, 96, 0.4), 8, 0, 0, 3);
+}
+
+.card-btn-orange {
+    -fx-background-color: #e67e22;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 22;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.card-btn-orange:hover {
+    -fx-background-color: #d35400;
+    -fx-effect: dropshadow(three-pass-box, rgba(230, 126, 34, 0.4), 8, 0, 0, 3);
+}

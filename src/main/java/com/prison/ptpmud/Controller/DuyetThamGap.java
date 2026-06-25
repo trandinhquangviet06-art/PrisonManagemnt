@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,8 +41,8 @@ public class DuyetThamGap implements Initializable {
     @FXML
     private TableColumn<DonDuyetThamGap, String> lblGioHen;
     @FXML
-    private TableColumn<DonDuyetThamGap,String> lblQuanHe;
-    private ObservableList<DonDuyetThamGap>DanhSachDuyet=FXCollections.observableArrayList();
+    private TableColumn<DonDuyetThamGap, String> lblQuanHe;
+    private ObservableList<DonDuyetThamGap> DanhSachDuyet = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,54 +65,77 @@ public class DuyetThamGap implements Initializable {
         String NgayTham;
         String CaTham;
         try {
-            String sql="select MaPhamNhan,QuanHe,TenPhamNhan,TenNguoiThan,NgayTham,CaTham from YeuCauThamGap";
-            Connection conn=DBConnection.getConnection();
-            PreparedStatement pst=conn.prepareStatement(sql);
-            ResultSet rs=pst.executeQuery();
-            while(rs.next()){
-                MaPN=rs.getString("MaPhamNhan");
-                QuanHe=rs.getString("QuanHe");
-                TenPN=rs.getString("TenPhamNhan");
-                TenNT=rs.getString("TenNguoiThan");
-                NgayTham=rs.getDate("NgayTham").toLocalDate().format(dtf);
-                CaTham=rs.getString("CaTham");
-                DanhSachDuyet.add(new DonDuyetThamGap(TenNT,QuanHe,MaPN,TenPN,NgayTham,CaTham));
+            String sql = "select MaPhamNhan,QuanHe,TenPhamNhan,TenNguoiThan,NgayTham,CaTham from YeuCauThamGap";
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                MaPN = rs.getString("MaPhamNhan");
+                QuanHe = rs.getString("QuanHe");
+                TenPN = rs.getString("TenPhamNhan");
+                TenNT = rs.getString("TenNguoiThan");
+                NgayTham = rs.getDate("NgayTham").toLocalDate().format(dtf);
+                CaTham = rs.getString("CaTham");
+                DanhSachDuyet.add(new DonDuyetThamGap(TenNT, QuanHe, MaPN, TenPN, NgayTham, CaTham));
             }
         } catch (SQLException ex) {
             System.getLogger(DuyetThamGap.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
+
     }
+
     @FXML
     public void chapNhanThamGap(javafx.event.ActionEvent event) throws SQLException {
-        DonDuyetThamGap donDuocChon= BangThamGap.getSelectionModel().getSelectedItem();
-        if(donDuocChon ==null){
-            Alert al=new Alert(Alert.AlertType.WARNING);
+        DonDuyetThamGap donDuocChon = BangThamGap.getSelectionModel().getSelectedItem();
+        if (donDuocChon == null) {
+            Alert al = new Alert(Alert.AlertType.WARNING);
             al.setTitle("thong bao");
             al.setContentText("hay chon 1 don");
             al.showAndWait();
+            return;
         }
-        String TrangThai="Đã Duyệt";
-        String MaPN=donDuocChon.getMaPN();
-        String sql="Update YeuCauThamGap set TrangThai=? where MaPhamNhan=?";
-        Connection conn=DBConnection.getConnection();
-        PreparedStatement pst=conn.prepareStatement(sql);
+        String TrangThai = "Đã Duyệt"; 
+        String MaPN = donDuocChon.getMaPN();
+        String sql = "Update YeuCauThamGap set TrangThai=? where MaPhamNhan=?";
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, TrangThai);
         pst.setString(2, MaPN);
-        ResultSet rs=pst.executeQuery();
-        
-        
+        int KetQua = pst.executeUpdate();
+
     }
+
     @FXML
-    public void tuChoiThamGap(javafx.event.ActionEvent event) {
-        // Chỗ này để test trước cho giao diện chạy lên
-        System.out.println("Đã bấm nút Từ chối thăm gặp!");
-        
-        // Gợi ý logic khi nào bạn code thật:
-        // 1. Lấy thông tin đơn đang được chọn trong bảng
-        // 2. (Tùy chọn) Hiện lên một ô nhỏ hỏi lý do từ chối
-        // 3. Chạy câu lệnh SQL UPDATE trạng thái đơn thành 'Từ chối' kèm lý do
-        // 4. Gọi lại loadDanhSach() để làm mới bảng
+    public void tuChoiThamGap(javafx.event.ActionEvent event) throws SQLException {
+        DonDuyetThamGap donDuocChon = BangThamGap.getSelectionModel().getSelectedItem();
+        if (donDuocChon == null) {
+            Alert al = new Alert(Alert.AlertType.WARNING);
+            al.setTitle("thong bao");
+            al.setContentText("hay chon 1 don");
+            al.showAndWait();
+            return;
+        }
+        String MaPN = donDuocChon.getMaPN();
+        javafx.scene.control.TextInputDialog dialog = new javafx.scene.control.TextInputDialog();
+        dialog.setTitle("Ly Do Tu Choi");
+        dialog.setHeaderText("Dang tu choi don tham cua PN:" + MaPN);
+        dialog.setContentText("Vui long nhap ly do:");
+        java.util.Optional<String> reason = dialog.showAndWait();
+        if (reason.isPresent()) {
+            String lyDo = reason.get();
+            String sql_tuchoi = "update YeuCauThamGap set TrangThai=?,LyDoPhanHoi=? where MaPhamNhan=?";
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql_tuchoi);
+            pst.setString(1, "refuse");
+            pst.setString(2, lyDo);
+            pst.setString(3, MaPN);
+            int ketqua= pst.executeUpdate();
+            DanhSachDuyet.clear();
+            loadDanhSach();
+            
+
+        }
+
     }
 
 }

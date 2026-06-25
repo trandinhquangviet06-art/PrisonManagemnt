@@ -16,7 +16,7 @@ public class harsh {
         return harshPass;
     }
     public static void main(String[] args) {
-        String pass="123";
+        String pass="123456";
         String newPass= TaoHamBam(pass);
         System.out.println(newPass);
     }
