@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.prison.ptpmud.Controller;
+
 import com.prison.ptpmud.Main.navigator;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -10,12 +11,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+
 /**
  *
  * @author Admin
  */
 public class GuardDashboardController {
-   @FXML private AnchorPane contentArea;
+
+    @FXML
+    private AnchorPane contentArea;
+
     @FXML
     private void quanLyPhamNhan(ActionEvent event) {
         try {
@@ -23,8 +28,9 @@ public class GuardDashboardController {
                     event,
                     "/view/prisoner_management.fxml",
                     "Quản lý phạm nhân",
-                    "/decor/style_nguoithan.css"
+                    "/decor/prisoner_management.css"
             );
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,16 +38,16 @@ public class GuardDashboardController {
 
     @FXML
     private void duyetYeuCauThamGap(ActionEvent event) {
-        System.out.println("Mở màn hình duyệt yêu cầu thăm gặp");
+        hienThiGiaoDienCon("/view/visit_request_management.fxml");
     }
 
     @FXML
     private void xemLichThamGap(ActionEvent event) {
-        System.out.println("Mở màn hình xem lịch thăm gặp");
+        System.out.println("Chức năng xem lịch thăm gặp đang được phát triển.");
     }
 
     @FXML
-    private void dangXuat(ActionEvent event) {
+    private void Dangxuat(ActionEvent event) {
         try {
             navigator.chuyenManHinh(
                     event,
@@ -53,22 +59,20 @@ public class GuardDashboardController {
             e.printStackTrace();
         }
     }
+
     private void hienThiGiaoDienCon(String duongDanFxml) {
         try {
-      
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(duongDanFxml));
             Parent nodeCon = loader.load();
 
-           
             contentArea.getChildren().clear();
 
-           
             AnchorPane.setTopAnchor(nodeCon, 0.0);
             AnchorPane.setBottomAnchor(nodeCon, 0.0);
             AnchorPane.setLeftAnchor(nodeCon, 0.0);
             AnchorPane.setRightAnchor(nodeCon, 0.0);
 
-           
             contentArea.getChildren().add(nodeCon);
 
         } catch (IOException e) {

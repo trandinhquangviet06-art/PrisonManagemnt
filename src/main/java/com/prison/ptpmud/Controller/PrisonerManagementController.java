@@ -186,7 +186,7 @@ private void suaPN() {
     selected.setHoTen(hoTen.get());
     selected.setNgaySinh(ngaySinh.get());
     selected.setToiDanh(toiDanh.get());
-    selected.setKhuGiam(khuGiam.get());
+    selected.setKhuGiamGiu(khuGiam.get());
     selected.setTrangThai(trangThai.get());
 
     try {
@@ -224,6 +224,7 @@ private void xoaPN() {
         e.printStackTrace();
     }
 }
+@FXML
 private void quayLai(ActionEvent event) {
     try {
         navigator.chuyenManHinh(

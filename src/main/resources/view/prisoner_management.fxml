@@ -11,31 +11,31 @@
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.PrisonerManagementController">
    <children>
-      <Label fx:id="lblTitle1" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="983.0" text="QUẢN LÝ PHẠM NHÂN">
+      <Label fx:id="lblTitle1" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="983.0" text="QU&#x1EA2;N L&#xDD; PH&#x1EA0;M NH&#xC2;N">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="timkiem" layoutX="206.0" layoutY="66.0" prefHeight="17.0" prefWidth="137.0" text="Tìm kiếm phạm nhân:" />
-      <TextField fx:id="txtTimkiem" layoutX="431.0" layoutY="62.0" promptText=" Nhập tên hoặc mã phạm nhân" />
-      <Button fx:id="bttimkiem" layoutX="664.0" layoutY="62.0" mnemonicParsing="false" onAction="#timKiem" text="Tìm kiếm" />
+      <Label fx:id="timkiem" layoutX="206.0" layoutY="66.0" prefHeight="17.0" prefWidth="137.0" text="T&#xEC;m ki&#x1EBF;m ph&#x1EA1;m nh&#xE2;n:" />
+      <TextField fx:id="txtTimkiem" layoutX="431.0" layoutY="62.0" promptText="Nh&#x1EAD;p t&#xEA;n ho&#x1EB7;c m&#xE3; ph&#x1EA1;m nh&#xE2;n" />
+      <Button fx:id="bttimkiem" layoutX="664.0" layoutY="62.0" mnemonicParsing="false" onAction="#timKiem" text="T&#xEC;m ki&#x1EBF;m" />
       <TableView fx:id="tbPhamNhan" layoutX="47.0" layoutY="142.0" prefHeight="364.0" prefWidth="904.0">
         <columns>
-          <TableColumn fx:id="maphamnhan" prefWidth="123.0" text="Mã phạm nhân" />
-          <TableColumn fx:id="hoten" prefWidth="207.0" text="Họ tên " />
-            <TableColumn fx:id="ngaysinh" prefWidth="151.0" text="Ngày sinh" />
-            <TableColumn fx:id="toidanh" minWidth="0.0" prefWidth="149.0" text="Tội danh" />
-            <TableColumn fx:id="khugiam" prefWidth="133.0" text="Khu giam giữ" />
-            <TableColumn fx:id="trangthai" prefWidth="140.0" text="Trạng thái" />
+          <TableColumn fx:id="maphamnhan" prefWidth="123.0" text="M&#xE3; ph&#x1EA1;m nh&#xE2;n" />
+          <TableColumn fx:id="hoten" prefWidth="207.0" text="H&#x1ECD; t&#xEA;n" />
+          <TableColumn fx:id="ngaysinh" prefWidth="151.0" text="Ng&#xE0;y sinh" />
+          <TableColumn fx:id="toidanh" minWidth="0.0" prefWidth="149.0" text="T&#x1ED9;i danh" />
+          <TableColumn fx:id="khugiam" prefWidth="133.0" text="Khu giam gi&#x1EEF;" />
+          <TableColumn fx:id="trangthai" prefWidth="140.0" text="Tr&#x1EA1;ng th&#xE1;i" />
         </columns>
       </TableView>
       <HBox layoutX="19.0" layoutY="517.0" prefHeight="105.0" prefWidth="964.0" spacing="180.0">
          <children>
-            <Button fx:id="them" mnemonicParsing="false" onAction="#themPN" text="Thêm " />
-            <Button fx:id="sua" mnemonicParsing="false" onAction="#suaPN" text="Sửa" />
-            <Button fx:id="lammoi" mnemonicParsing="false" onAction="#lamMoi" text="Làm mới" />
-            <Button fx:id="quaylai" mnemonicParsing="false" onAction="#quayLai" text="Quay lại" />
-            <Button mnemonicParsing="false" onAction="#xoaPN" text="Xóa" fx:id="xoa" />
+            <Button fx:id="them" mnemonicParsing="false" onAction="#themPN" text="Th&#xEA;m" />
+            <Button fx:id="sua" mnemonicParsing="false" onAction="#suaPN" text="S&#x1EED;a" />
+            <Button fx:id="lammoi" mnemonicParsing="false" onAction="#lamMoi" text="L&#xE0;m m&#x1EDB;i" />
+            <Button fx:id="quaylai" mnemonicParsing="false" onAction="#quayLai" text="Quay l&#x1EA1;i" />
+            <Button mnemonicParsing="false" onAction="#xoaPN" text="X&#xF3;a" fx:id="xoa" />
          </children>
       </HBox>
    </children>

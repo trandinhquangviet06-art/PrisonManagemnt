@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prison.ptpmud.Controller.GuardDashboardController">
    <top>
       <HBox prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #1a3a6b;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTitle" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1099.0" text="CỔNG THÔNG TIN QUẢN GIÁO" textFill="#f5f3f3">
+            <Label fx:id="lblTitle" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1099.0" text="C&#x1ED4;NG TH&#xD4;NG TIN QU&#x1EA2;N GI&#xC1;O" textFill="#f5f3f3">
                <font>
                   <Font size="24.0" />
                </font>
@@ -23,14 +23,18 @@
    <left>
       <VBox focusTraversable="true" prefHeight="0.0" prefWidth="250.0" spacing="130.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="quanlyphamnhan" lineSpacing="20.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onquanlyphamnhanClick" prefHeight="25.0" prefWidth="207.0" text="Quản lý phạm nhân" />
-            <Button fx:id="duyetyeucauthamgap" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onduyetyeucauthamgapClick" prefHeight="25.0" prefWidth="204.0" text="Duyệt yêu cầu thăm gặp" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onxemlichthamgapClick" prefHeight="25.0" prefWidth="203.0" text="Xem lịch thăm gặp" fx:id="xemlichthamgap" />
-            <Button fx:id="dangxuat" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ondangxuatClick" prefHeight="9.0" prefWidth="230.0" text="Đăng xuất" />
+            <Button fx:id="quanlyphamnhan" lineSpacing="20.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#quanLyPhamNhan" prefHeight="25.0" prefWidth="207.0" text="Qu&#x1EA3;n l&#xFD; ph&#x1EA1;m nh&#xE2;n" />
+            <Button fx:id="duyetyeucauthamgap" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#duyetYeuCauThamGap" prefHeight="25.0" prefWidth="204.0" text="Duy&#x1EC7;t y&#xEA;u c&#x1EA7;u th&#x103;m g&#x1EB7;p" />
+            <Button fx:id="xemlichthamgap" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#xemLichThamGap" prefHeight="25.0" prefWidth="203.0" text="Xem l&#x1ECB;ch th&#x103;m g&#x1EB7;p" />
+            <Button fx:id="dangxuat" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Dangxuat" prefHeight="9.0" prefWidth="230.0" text="&#x110;&#x103;ng xu&#x1EA5;t" />
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="contentArea" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane focusTraversable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="contentArea" layoutY="7.0" prefHeight="620.0" prefWidth="847.0" />
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>

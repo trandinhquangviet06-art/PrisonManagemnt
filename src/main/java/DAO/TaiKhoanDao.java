@@ -27,7 +27,8 @@ public class TaiKhoanDao {
             ResultSet rs = null;
             
             if (conn != null) {
-                String sql = "select * from taikhoan where TaiKhoan=? and VaiTro=?";
+
+                String sql = "select * from TaiKhoan where TaiKhoan=? and VaiTro=?";
                 pst = conn.prepareStatement(sql);
                 
                 
@@ -39,7 +40,9 @@ public class TaiKhoanDao {
                     String passDB = rs.getString("MatKhau");
                     if(BCrypt.checkpw(pass, passDB)){
                         isLoginSuccess=true;
+
                         String query_cccdNT="select nt.CCCD from NguoiThan as nt join PhamNhan as pn on pn.MaPhamNhan=nt.MaPhamNhan where TaiKhoan=?";
+
                         PreparedStatement pst2=conn.prepareStatement(query_cccdNT);
                         pst2.setString(1, taikhoan);
                         ResultSet rs2=pst2.executeQuery();
