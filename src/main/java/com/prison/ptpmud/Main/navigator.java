@@ -24,6 +24,7 @@ public class navigator {
         Stage stage= (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 }
