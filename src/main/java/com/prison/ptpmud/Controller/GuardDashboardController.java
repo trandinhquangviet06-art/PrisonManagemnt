@@ -43,7 +43,7 @@ public class GuardDashboardController {
 
     @FXML
     private void xemLichThamGap(ActionEvent event) {
-        System.out.println("Chức năng xem lịch thăm gặp đang được phát triển.");
+         hienThiGiaoDienCon("/view/visit_schedule.fxml");
     }
 
     @FXML

@@ -21,6 +21,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 /**
  *
  * @author Admin
@@ -106,7 +108,7 @@ private void themPN() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_prisoner.fxml"));
         Parent root = loader.load();
 
-        
+         AddPrisonerController controller = loader.getController();
         Stage stage = new Stage();
         stage.setTitle("Thêm phạm nhân mới");
         stage.setScene(new Scene(root));
@@ -116,7 +118,7 @@ private void themPN() {
         stage.showAndWait(); 
 
        
-        AddPrisonerController controller = loader.getController();
+       
         if (controller.isSaved()) {
             loadData(); 
         }
@@ -205,24 +207,40 @@ private void suaPN() {
 private void xoaPN() {
     
     Prisoner selected = tbPhamNhan.getSelectionModel().getSelectedItem();
-    
+
     if (selected == null) {
-        System.out.println("Vui lòng chọn phạm nhân cần xóa trên bảng!");
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Chưa chọn");
+        alert.setContentText("Vui lòng chọn phạm nhân cần xóa trên bảng!");
+        alert.showAndWait();
         return;
     }
+    Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+    confirm.setTitle("Xác nhận xóa");
+    confirm.setContentText("Bạn có chắc muốn xóa phạm nhân: " 
+        + selected.getHoTen() + "?\nToàn bộ dữ liệu liên quan cũng sẽ bị xóa!");
     
-    try {
-       
-        boolean success = prisonerDao.delete(selected.getMaPhamNhan());
-        if (success) {
-            System.out.println("Đã xóa thành công phạm nhân khỏi hệ thống.");
-            loadData(); 
-        } else {
-            System.out.println("Xóa thất bại!");
+    confirm.showAndWait().ifPresent(response -> {
+        if (response == ButtonType.OK) {
+            try {
+                boolean success = prisonerDao.delete(selected.getMaPhamNhan());
+                if (success) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thành công");
+                    alert.setContentText("Đã xóa phạm nhân khỏi hệ thống!");
+                    alert.showAndWait();
+                    loadData();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Thất bại");
+                    alert.setContentText("Xóa thất bại, vui lòng thử lại!");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+    });
 }
 @FXML
 private void quayLai(ActionEvent event) {

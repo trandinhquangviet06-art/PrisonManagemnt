@@ -6,54 +6,64 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 18 thg 6, 2026, 17:57:36
     Author     : Admin
 */
+* {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+ 
 .root {
-    -fx-background-color: #f4f6f9;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #6b6b6b;
 }
-
+ 
+.form-container {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 8;
+    -fx-padding: 40 50 40 50;
+}
+ 
 .label {
-    -fx-text-fill: #1f2d3d;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: normal;
 }
-
+ 
 .text-field {
-    -fx-pref-height: 32px;
-    -fx-pref-width: 220px;
     -fx-background-color: white;
-    -fx-border-color: #cfd8dc;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 0 10px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 6 10 6 10;
     -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+    -fx-pref-width: 220;
+    -fx-pref-height: 30;
 }
-
+ 
 .text-field:focused {
-    -fx-border-color: #3498db;
-    -fx-border-width: 2px;
+    -fx-border-color: #7ab3d4;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(122, 179, 212, 0.4), 4, 0, 0, 0);
 }
-
+ 
 .button {
-    -fx-background-color: #3498db;
-    -fx-text-fill: white;
+    -fx-background-color: #e8e8e8;
+    -fx-border-color: #aaaaaa;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
     -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8px;
-    -fx-padding: 7px 18px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5 20 5 20;
     -fx-cursor: hand;
+    -fx-pref-width: 80;
 }
-
+ 
 .button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #d8d8d8;
+    -fx-border-color: #888888;
 }
-
+ 
 .button:pressed {
-    -fx-background-color: #1f618d;
+    -fx-background-color: #c8c8c8;
 }
-
-.cancel-button {
-    -fx-background-color: #e74c3c;
-}
-
-.cancel-button:hover {
-    -fx-background-color: #c0392b;
-}
+ 
