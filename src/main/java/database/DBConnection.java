@@ -19,7 +19,7 @@ public class DBConnection {
         String server = "localhost";
         String dbName = "QLNT_HopNhat";
         String user = "sa";
-        String pass = "vietvipaz0000";
+        String pass = "123456";
         String url = "jdbc:sqlserver://" + server + ":1433;"
                 + "databaseName=" + dbName
                 + ";encrypt=true;trustServerCertificate=true;";

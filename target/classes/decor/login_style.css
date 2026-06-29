@@ -1,151 +1,79 @@
-/* ========================================
-   1. NỀN & KHUNG CARD CHÍNH
-   ======================================== */
 .main-root {
-    -fx-background-color: #2b3038; /* Nền xám bao quanh toàn màn hình */
+    -fx-background-color: linear-gradient(to bottom right, #161c2b, #090c15);
 }
 
-.login-card {
-    -fx-background-radius: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 30, 0, 0, 10);
+.bg-sphere-bright {
+    -fx-fill: radial-gradient(center 45% 45%, radius 60%, #00bcff 0%, #0055ff 60%, #001155 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 5, 10);
 }
 
-/* Nửa bên trái (Tối hơn) */
-.left-pane {
-    -fx-background-color: #1a1e23;
-    -fx-background-radius: 10px 0 0 10px;
+.bg-sphere-dark {
+    -fx-fill: radial-gradient(center 45% 45%, radius 60%, #0088ff 0%, #0033cc 65%, #000c33 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 136, 255, 0.6), 15, 0, 0, 0);
 }
 
-/* Nửa bên phải (Sáng hơn một chút) */
-.right-pane {
-    -fx-background-color: #22272e;
-    -fx-background-radius: 0 10px 10px 0;
+.bg-sphere-glow {
+    -fx-fill: radial-gradient(center 50% 50%, radius 50%, rgba(0, 100, 255, 0.35) 0%, rgba(0, 30, 100, 0.02) 70%, transparent 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 100, 255, 0.4), 60, 0, 0, 0);
 }
 
-/* ========================================
-   2. TEXT & TIÊU ĐỀ
-   ======================================== */
-.shield-icon {
-    -fx-font-size: 70px;
-    -fx-text-fill: #95a5a6;
+.glass-card-blur-bg {
+    -fx-background-color: rgba(255, 255, 255, 0.02), rgba(15, 22, 38, 0.86);
+    -fx-background-radius: 24;
 }
 
-.title-main {
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
-.subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: #7d8590;
-    -fx-padding: 10px 0 0 0;
-}
-
-.section-header {
-    -fx-font-size: 12px;
-    -fx-text-fill: #7d8590;
-    -fx-font-weight: bold;
-}
-
-/* ========================================
-   3. Ô NHẬP LIỆU (TextFields)
-   ======================================== */
-.input-label {
-    -fx-font-size: 11px;
-    -fx-text-fill: #7d8590;
-}
-
-/* Khối giả lập ô nhập liệu */
-.input-box {
-    -fx-background-color: #1a1e23;
-    -fx-border-color: #3d444d;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 5px 12px;
-}
-
-/* Hiệu ứng sáng viền xanh khi nhấp chuột vào */
-.input-box:focus-within {
-    -fx-border-color: #2f81f7;
-    -fx-effect: dropshadow(three-pass-box, rgba(47, 129, 247, 0.2), 5, 0, 0, 0);
-}
-
-/* Ô nhập liệu thật (Trong suốt để lộ nền đen) */
-.input-field {
+.glass-card-border {
     -fx-background-color: transparent;
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
-    -fx-prompt-text-fill: #59636e;
+    -fx-background-radius: 24;
+    -fx-border-color: rgba(255, 255, 255, 0.14);
+    -fx-border-radius: 24;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 30, 0, 0, 15);
 }
 
-.input-icon {
-    -fx-text-fill: #59636e;
-    -fx-font-size: 14px;
+.glass-card-content { 
+    -fx-background-color: transparent; 
 }
 
-/* Sửa lỗi viền mặc định của JavaFX */
-.input-field:focused {
-    -fx-background-color: transparent;
+.login-header { 
+    -fx-font-size: 26px; 
+    -fx-font-weight: bold; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-family: "Segoe UI Semibold", sans-serif; 
+    -fx-letter-spacing: 1px; 
 }
 
-/* ========================================
-   4. NÚT BẤM VÀ ĐƯỜNG KẺ
-   ======================================== */
-.btn-login {
-    -fx-background-color: #2f81f7;
-    -fx-text-fill: #ffffff;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-background-radius: 6px;
-    -fx-padding: 12px;
-    -fx-cursor: hand;
+.input-label { 
+    -fx-font-size: 13px; 
+    -fx-text-fill: #7e8e9f; 
 }
 
-.btn-login:hover {
-    -fx-background-color: #3b8cf8;
+.glass-input { 
+    -fx-background-color: rgba(20, 35, 65, 0.45); 
+    -fx-background-radius: 10; 
+    -fx-border-color: rgba(0, 123, 255, 0.3); 
+    -fx-border-radius: 10; 
+    -fx-border-width: 1px; 
+    -fx-padding: 12 15 12 15; 
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: #4b596c;
 }
 
-/* Sinh trắc học */
-.divider {
-    -fx-opacity: 0.1;
+.glass-input:focused { 
+    -fx-border-color: #007bff; 
+    -fx-background-color: rgba(20, 35, 65, 0.65); 
 }
 
-.divider-text {
-    -fx-font-size: 10px;
-    -fx-text-fill: #59636e;
+.btn-signin { 
+    -fx-background-color: #0066ff; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-weight: bold; 
+    -fx-font-size: 15px; 
+    -fx-background-radius: 30; 
+    -fx-padding: 13 0 13 0; 
+    -fx-cursor: hand; 
 }
 
-.bio-btn {
-    -fx-background-color: transparent;
-    -fx-border-color: #3d444d;
-    -fx-border-radius: 50%;
-    -fx-background-radius: 50%;
-    -fx-text-fill: #7d8590;
-    -fx-font-size: 18px;
-    -fx-min-width: 40px;
-    -fx-min-height: 40px;
-    -fx-cursor: hand;
-}
-
-.bio-btn:hover {
-    -fx-border-color: #2f81f7;
-    -fx-text-fill: #2f81f7;
-}
-
-/* Footer links */
-.link-small {
-    -fx-font-size: 11px;
-    -fx-text-fill: #2f81f7;
-    -fx-cursor: hand;
-}
-
-.link-footer {
-    -fx-font-size: 12px;
-    -fx-text-fill: #7d8590;
-    -fx-cursor: hand;
-}
-
-.link-footer:hover {
-    -fx-text-fill: #ffffff;
+.btn-signin:hover { 
+    -fx-background-color: #0055dd; 
 }

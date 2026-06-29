@@ -39,7 +39,7 @@
             <TextField fx:id="trangthai" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button layoutX="178.0" layoutY="341.0" mnemonicParsing="false" onAction="#luu" text="Lưu" />
-      <Button layoutX="359.0" layoutY="341.0" mnemonicParsing="false" onAction="#huy" text="Hủy" />
+      <Button layoutX="187.0" layoutY="341.0" mnemonicParsing="false" onAction="#luu" text="Lưu" />
+      <Button layoutX="378.0" layoutY="341.0" mnemonicParsing="false" onAction="#huy" text="Hủy" />
    </children>
 </AnchorPane>
