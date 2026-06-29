@@ -70,9 +70,11 @@ public class VisitScheduleController implements Initializable{
             Connection conn = DBConnection.getConnection();
  
             StringBuilder sql = new StringBuilder(
-                "SELECT TenNguoiThan, QuanHe, MaPhamNhan, TenPhamNhan, NgayTham, CaTham " +
-                "FROM YeuCauThamGap " +
-                "WHERE TrangThai = N'Đã Duyệt'"
+                "SELECT yc.MaYC, nt.HoTen as TenNguoiThan, nt.QuanHe, nt.MaPhamNhan, pn.HoTen as TenPhamNhan, yc.NgayTham, yc.CaTham " +
+                "FROM YeuCauThamGap yc " +
+                "JOIN NguoiThan nt ON yc.CCCDNguoiThan = nt.CCCD " +
+                "JOIN PhamNhan pn ON nt.MaPhamNhan = pn.MaPhamNhan " +
+                "WHERE yc.TrangThai = N'Đã Duyệt'"
             );
  
          
@@ -102,6 +104,7 @@ public class VisitScheduleController implements Initializable{
             ResultSet rs = pst.executeQuery();
  
             while (rs.next()) {
+                int maYC      = rs.getInt("MaYC");
                 String tenNT   = rs.getString("TenNguoiThan");
                 String quanHe  = rs.getString("QuanHe");
                 String maPN    = rs.getString("MaPhamNhan");
@@ -109,7 +112,7 @@ public class VisitScheduleController implements Initializable{
                 String ngay    = rs.getDate("NgayTham").toLocalDate().format(dtf);
                 String ca      = rs.getString("CaTham");
  
-                danhSach.add(new DonDuyetThamGap(tenNT, quanHe, maPN, tenPN, ngay, ca));
+                danhSach.add(new DonDuyetThamGap(maYC, tenNT, quanHe, maPN, tenPN, ngay, ca));
             }
  
             lblTongSo.setText(String.valueOf(danhSach.size()));
