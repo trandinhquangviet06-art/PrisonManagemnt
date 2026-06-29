@@ -58,6 +58,7 @@ public class DuyetThamGap implements Initializable {
 
     private void loadDanhSach() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        int MaYC;
         String MaPN;
         String QuanHe;
         String TenPN;
@@ -65,18 +66,23 @@ public class DuyetThamGap implements Initializable {
         String NgayTham;
         String CaTham;
         try {
-            String sql = "select MaPhamNhan,QuanHe,TenPhamNhan,TenNguoiThan,NgayTham,CaTham from YeuCauThamGap";
+            String sql = "select yc.MaYC, nt.MaPhamNhan, nt.QuanHe, pn.HoTen as TenPhamNhan, nt.HoTen as TenNguoiThan, yc.NgayTham, yc.CaTham "
+                       + "from YeuCauThamGap yc "
+                       + "join NguoiThan nt on yc.CCCDNguoiThan = nt.CCCD "
+                       + "join PhamNhan pn on nt.MaPhamNhan = pn.MaPhamNhan "
+                       + "where yc.TrangThai = N'Chờ Duyệt'";
             Connection conn = DBConnection.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
+                MaYC = rs.getInt("MaYC");
                 MaPN = rs.getString("MaPhamNhan");
                 QuanHe = rs.getString("QuanHe");
                 TenPN = rs.getString("TenPhamNhan");
                 TenNT = rs.getString("TenNguoiThan");
                 NgayTham = rs.getDate("NgayTham").toLocalDate().format(dtf);
                 CaTham = rs.getString("CaTham");
-                DanhSachDuyet.add(new DonDuyetThamGap(TenNT, QuanHe, MaPN, TenPN, NgayTham, CaTham));
+                DanhSachDuyet.add(new DonDuyetThamGap(MaYC, TenNT, QuanHe, MaPN, TenPN, NgayTham, CaTham));
             }
         } catch (SQLException ex) {
             System.getLogger(DuyetThamGap.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -95,13 +101,16 @@ public class DuyetThamGap implements Initializable {
             return;
         }
         String TrangThai = "Đã Duyệt"; 
-        String MaPN = donDuocChon.getMaPN();
-        String sql = "Update YeuCauThamGap set TrangThai=? where MaPhamNhan=?";
+        int MaYC = donDuocChon.getMaYC();
+        String sql = "Update YeuCauThamGap set TrangThai=?, LyDoPhanHoi=? where MaYC=?";
         Connection conn = DBConnection.getConnection();
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, TrangThai);
-        pst.setString(2, MaPN);
+        pst.setString(2, "Đã đồng ý");
+        pst.setInt(3, MaYC);
         int KetQua = pst.executeUpdate();
+        DanhSachDuyet.clear();
+        loadDanhSach();
 
     }
 
@@ -116,6 +125,7 @@ public class DuyetThamGap implements Initializable {
             return;
         }
         String MaPN = donDuocChon.getMaPN();
+        int MaYC = donDuocChon.getMaYC();
         javafx.scene.control.TextInputDialog dialog = new javafx.scene.control.TextInputDialog();
         dialog.setTitle("Ly Do Tu Choi");
         dialog.setHeaderText("Dang tu choi don tham cua PN:" + MaPN);
@@ -123,12 +133,12 @@ public class DuyetThamGap implements Initializable {
         java.util.Optional<String> reason = dialog.showAndWait();
         if (reason.isPresent()) {
             String lyDo = reason.get();
-            String sql_tuchoi = "update YeuCauThamGap set TrangThai=?,LyDoPhanHoi=? where MaPhamNhan=?";
+            String sql_tuchoi = "update YeuCauThamGap set TrangThai=?,LyDoPhanHoi=? where MaYC=?";
             Connection conn = DBConnection.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql_tuchoi);
-            pst.setString(1, "refuse");
+            pst.setString(1, "Từ chối");
             pst.setString(2, lyDo);
-            pst.setString(3, MaPN);
+            pst.setInt(3, MaYC);
             int ketqua= pst.executeUpdate();
             DanhSachDuyet.clear();
             loadDanhSach();

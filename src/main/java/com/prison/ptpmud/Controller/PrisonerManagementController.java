@@ -207,21 +207,45 @@ private void xoaPN() {
     Prisoner selected = tbPhamNhan.getSelectionModel().getSelectedItem();
     
     if (selected == null) {
-        System.out.println("Vui lòng chọn phạm nhân cần xóa trên bảng!");
+        javafx.scene.control.Alert al = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING);
+        al.setTitle("Thông báo");
+        al.setHeaderText(null);
+        al.setContentText("Vui lòng chọn phạm nhân cần xóa trên bảng!");
+        al.showAndWait();
         return;
     }
     
-    try {
-       
-        boolean success = prisonerDao.delete(selected.getMaPhamNhan());
-        if (success) {
-            System.out.println("Đã xóa thành công phạm nhân khỏi hệ thống.");
-            loadData(); 
-        } else {
-            System.out.println("Xóa thất bại!");
+    javafx.scene.control.Alert confirmAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+    confirmAlert.setTitle("Xác nhận xóa");
+    confirmAlert.setHeaderText(null);
+    confirmAlert.setContentText("Bạn có chắc chắn muốn xóa phạm nhân " + selected.getHoTen() + " (" + selected.getMaPhamNhan() + ") không?");
+    Optional<javafx.scene.control.ButtonType> result = confirmAlert.showAndWait();
+    
+    if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
+        try {
+            boolean success = prisonerDao.delete(selected.getMaPhamNhan());
+            if (success) {
+                javafx.scene.control.Alert al = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+                al.setTitle("Thành công");
+                al.setHeaderText(null);
+                al.setContentText("Đã xóa thành công phạm nhân khỏi hệ thống.");
+                al.showAndWait();
+                loadData(); 
+            } else {
+                javafx.scene.control.Alert al = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+                al.setTitle("Thất bại");
+                al.setHeaderText(null);
+                al.setContentText("Xóa thất bại!");
+                al.showAndWait();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javafx.scene.control.Alert al = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            al.setTitle("Lỗi");
+            al.setHeaderText(null);
+            al.setContentText("Không thể xóa phạm nhân này vì đang có dữ liệu liên quan (người thân, yêu cầu thăm gặp...).\nVui lòng xóa các dữ liệu liên quan trước.");
+            al.showAndWait();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
 }
 @FXML

@@ -170,7 +170,7 @@ public class controller_nguoiThan implements Initializable{
                 ngayTao=rs.getDate("NgayTao").toLocalDate().format(dtf);
                 trangThai=rs.getString("TrangThai");
                 lyDoPhanHoi=rs.getString("LyDoPhanHoi");
-                if(lyDoPhanHoi==null) lyDoPhanHoi="Dang Cho Can Bo Xu Li";
+                if(lyDoPhanHoi==null) lyDoPhanHoi="Đang chờ cán bộ xử lý";
                 danhSachDon.add(new DonXinTham(maYC,ngayTham,caTham,ngayTao,trangThai,lyDoPhanHoi));
             }
             
