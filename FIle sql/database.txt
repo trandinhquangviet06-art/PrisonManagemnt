@@ -1,0 +1,109 @@
+-- =======================================================
+-- FILE: schema_hopnhat.sql
+-- Mục đích: Hợp nhất 3 cấu trúc Database thành 1 bản hoàn chỉnh
+-- Đảm bảo không mất bất kỳ thuộc tính nào từ các bản cũ.
+-- =======================================================
+
+CREATE DATABASE QLNT_HopNhat;
+GO
+
+USE QLNT_HopNhat;
+GO
+
+-- =======================================================
+-- 1. BẢNG TÀI KHOẢN (Gộp từ: taikhoan)
+-- Quản lý thông tin đăng nhập cốt lõi
+-- =======================================================
+CREATE TABLE TaiKhoan (
+    TaiKhoan VARCHAR(50) NOT NULL PRIMARY KEY, -- Gộp: taikhoan, TenDangNhap
+    MatKhau VARCHAR(100) NOT NULL,             -- Gộp: pass
+    VaiTro NVARCHAR(50)                        -- Gộp: vaitro
+);
+GO
+
+-- =======================================================
+-- 2. BẢNG PHẠM NHÂN (Gộp từ: prison, Prisoner, PhamNhan)
+-- =======================================================
+CREATE TABLE PhamNhan (
+    MaPhamNhan VARCHAR(50) NOT NULL PRIMARY KEY, -- Gộp: maPrison, maPhamNhan
+    HoTen NVARCHAR(100) NOT NULL,
+    Tuoi INT,                                    -- Lấy từ Image 1
+    NgaySinh DATE,                               -- Lấy từ Image 2
+    GioiTinh NVARCHAR(10),                       -- Lấy từ Image 1
+    ToiDanh NVARCHAR(255),
+    KhuGiamGiu NVARCHAR(50),                     -- Gộp: khuGiamGiu, khuGiam, PhongGiam
+    NgayNhapTrai DATE,                           -- Lấy từ SQL
+    TrangThai NVARCHAR(50),                      -- Lấy từ Image 2, SQL
+    HinhAnh NVARCHAR(255)                        -- Lấy từ SQL
+);
+GO
+
+-- =======================================================
+-- 3. BẢNG NGƯỜI THÂN / NGƯỜI DÙNG (Gộp từ: parent, NguoiDung)
+-- =======================================================
+CREATE TABLE NguoiThan (
+    CCCD VARCHAR(20) NOT NULL PRIMARY KEY,       -- Khóa chính chuẩn từ Image 1
+    TaiKhoan VARCHAR(50),                        -- Khóa ngoại nối sang bảng TaiKhoan
+    MatKhau VARCHAR(100),                        -- Giữ lại theo Image 1 & SQL (Dù có ở TaiKhoan)
+    HoTen NVARCHAR(100),
+    NgaySinh DATE,                               -- Gộp: birth
+    GioiTinh NVARCHAR(10),                       -- Lấy từ Image 1
+    QuanHe NVARCHAR(50),                         -- Gộp: relationship
+    ChucVu NVARCHAR(50),                         -- Lấy từ SQL (NguoiDung)
+    MaPhamNhan VARCHAR(50),                      -- Khóa ngoại trỏ về người bị giam
+
+    CONSTRAINT FK_NguoiThan_TaiKhoan FOREIGN KEY (TaiKhoan) REFERENCES TaiKhoan(TaiKhoan),
+    CONSTRAINT FK_NguoiThan_PhamNhan FOREIGN KEY (MaPhamNhan) REFERENCES PhamNhan(MaPhamNhan)
+);
+GO
+
+-- =======================================================
+-- 4. BẢNG YÊU CẦU THĂM GẶP (Gộp từ: YeuCauThamGap, Yeucauthamgap, LichHen, LichThamNuoi)
+-- Chứa TẤT CẢ các thuộc tính lịch sử hẹn
+-- =======================================================
+CREATE TABLE YeuCauThamGap (
+    MaYC INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Gộp: maYC, maYeuCau, id, MaLichHen
+    CCCDNguoiThan VARCHAR(20),                   -- Lấy từ Image 1 (Khóa ngoại)
+    MaPhamNhan VARCHAR(50),                      -- Lấy từ Image 2 (Khóa ngoại)
+    TenNguoiThan NVARCHAR(100),                  -- Lấy từ Image 2, SQL
+    TenPhamNhan NVARCHAR(100),                   -- Lấy từ SQL
+    QuanHe NVARCHAR(50),                         -- Gộp: MoiQuanHe, quan_he
+    NgayTham DATE,                               -- Gộp: ngayTham, NgayHen
+    CaTham NVARCHAR(50),                         -- Gộp: caTham, CaHen, ca_gap
+    GhiChu NVARCHAR(MAX),                        -- Lấy từ Image 1 & 2
+    NgayTao DATE,                                -- Lấy từ Image 1
+    TrangThai NVARCHAR(50),                      -- Có mặt ở tất cả các bảng
+    LyDoPhanHoi NVARCHAR(MAX),                   -- Lấy từ Image 1 & 2
+
+    CONSTRAINT FK_YeuCau_NguoiThan FOREIGN KEY (CCCDNguoiThan) REFERENCES NguoiThan(CCCD),
+    CONSTRAINT FK_YeuCau_PhamNhan FOREIGN KEY (MaPhamNhan) REFERENCES PhamNhan(MaPhamNhan)
+);
+GO
+
+-- =======================================================
+-- 5. BẢNG TIẾP TẾ (Gộp từ: TiepTe, QuanLyTiepTe)
+-- =======================================================
+CREATE TABLE TiepTe (
+    MaTiepTe INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Gộp: MaTiepTe, id
+    TenNguoiThan NVARCHAR(100),                      -- Lấy từ QuanLyTiepTe
+    TenPhamNhan NVARCHAR(100),                       -- Gộp: NguoiNhan, ten_pham_nhan
+    MaPhamNhan VARCHAR(50),                          -- Thêm để đồng bộ logic quản lý
+    DanhSachVatPham NVARCHAR(MAX),                   -- Gộp: DanhMucDoGui, danh_sach_vat_pham
+    SoTienLuuKy DECIMAL(18, 2),                      -- Lấy từ TiepTe
+    NgayGui DATE,                                    -- Lấy từ cả 2 bảng
+    TrangThai NVARCHAR(50),                          -- Lấy từ QuanLyTiepTe
+
+    CONSTRAINT FK_TiepTe_PhamNhan FOREIGN KEY (MaPhamNhan) REFERENCES PhamNhan(MaPhamNhan)
+);
+GO
+CREATE TABLE QuanNguc (
+    MaQN VARCHAR(20) PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE,
+    GioiTinh NVARCHAR(10),
+    SoDienThoai VARCHAR(15),
+    HinhAnh NVARCHAR(255) -- Lưu đường dẫn tệp ảnh hồ sơ
+);
+
+-- Chèn dữ liệu mẫu chuẩn (Ảnh mặc định có thể để trống hoặc đường dẫn test)
+INSERT INTO QuanNguc VALUES ('QN001', N'Nguyễn Văn Hùng', '1985-05-20', N'Nam', '0912345678', '');

@@ -10,6 +10,7 @@ package com.prison.ptpmud.Controller;
  */
 public class DonDuyetThamGap {
 
+    int MaYC;
     String TenNT;
     String QuanHe;
     String MaPN;
@@ -17,13 +18,18 @@ public class DonDuyetThamGap {
     String NgayHen;
     String CaTham;
 
-    public DonDuyetThamGap(String TenNT, String QuanHe, String MaPN, String TenPN, String NgayHen, String CaTham) {
+    public DonDuyetThamGap(int MaYC, String TenNT, String QuanHe, String MaPN, String TenPN, String NgayHen, String CaTham) {
+        this.MaYC = MaYC;
         this.TenNT = TenNT;
         this.QuanHe = QuanHe;
         this.MaPN = MaPN;
         this.TenPN = TenPN;
         this.NgayHen = NgayHen;
         this.CaTham = CaTham;
+    }
+
+    public int getMaYC() {
+        return MaYC;
     }
 
     public String getTenNT() {

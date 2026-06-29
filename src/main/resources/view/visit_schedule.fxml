@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.prison.ptpmud.Controller.VisitScheduleController"
+    stylesheets="@/decor/visit_schedule.css"
+    prefWidth="900" prefHeight="600">
+
+    <VBox spacing="0"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Label text="LỊCH THĂM GẶP PHẠM NHÂN" styleClass="header-title"/>
+        </HBox>
+
+        <!-- Filter bar -->
+        <HBox styleClass="filter-bar" spacing="12" alignment="CENTER_LEFT">
+            <padding><Insets top="12" bottom="12" left="20" right="20"/></padding>
+
+            <Label text="Lọc theo ngày:" styleClass="filter-label"/>
+            <DatePicker fx:id="dpNgay" promptText="Chọn ngày" prefWidth="150"/>
+
+            <Label text="Ca thăm:" styleClass="filter-label"/>
+            <ComboBox fx:id="cbCa" prefWidth="150"/>
+
+            <Button text="Tìm kiếm" styleClass="btn-search" onAction="#TimKiem"/>
+            <Button text="Làm mới"  styleClass="btn-reset"  onAction="#LamMoi"/>
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="tbLichTham" VBox.vgrow="ALWAYS" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colNguoiThan" text="Người thân"    prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="tenNT"/></cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colQuanHe"    text="Quan hệ"       prefWidth="110">
+                    <cellValueFactory><PropertyValueFactory property="quanHe"/></cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colMaPN"      text="Mã phạm nhân"  prefWidth="130">
+                    <cellValueFactory><PropertyValueFactory property="maPN"/></cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colTenPN"     text="Tên phạm nhân" prefWidth="170">
+                    <cellValueFactory><PropertyValueFactory property="tenPN"/></cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colNgayTham"  text="Ngày thăm"     prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="ngayHen"/></cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colCaTham"    text="Ca thăm"       prefWidth="160">
+                    <cellValueFactory><PropertyValueFactory property="CaTham"/></cellValueFactory>
+                </TableColumn>
+            </columns>
+
+            <placeholder>
+                <Label text="Không có lịch thăm gặp nào được duyệt." styleClass="table-placeholder"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Footer -->
+        <HBox styleClass="footer-bar" alignment="CENTER_LEFT" spacing="8">
+            <padding><Insets top="10" bottom="10" left="20" right="20"/></padding>
+            <Label text="Tổng số lịch:" styleClass="footer-label"/>
+            <Label fx:id="lblTongSo" text="0" styleClass="footer-count"/>
+        </HBox>
+
+    </VBox>
+</AnchorPane>
