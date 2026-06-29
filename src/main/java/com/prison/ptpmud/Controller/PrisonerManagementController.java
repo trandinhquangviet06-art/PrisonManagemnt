@@ -21,6 +21,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 /**
  *
  * @author Admin
@@ -106,7 +108,7 @@ private void themPN() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add_prisoner.fxml"));
         Parent root = loader.load();
 
-        
+         AddPrisonerController controller = loader.getController();
         Stage stage = new Stage();
         stage.setTitle("Thêm phạm nhân mới");
         stage.setScene(new Scene(root));
@@ -116,7 +118,7 @@ private void themPN() {
         stage.showAndWait(); 
 
        
-        AddPrisonerController controller = loader.getController();
+       
         if (controller.isSaved()) {
             loadData(); 
         }
@@ -205,7 +207,7 @@ private void suaPN() {
 private void xoaPN() {
     
     Prisoner selected = tbPhamNhan.getSelectionModel().getSelectedItem();
-    
+
     if (selected == null) {
         javafx.scene.control.Alert al = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING);
         al.setTitle("Thông báo");
@@ -214,6 +216,10 @@ private void xoaPN() {
         al.showAndWait();
         return;
     }
+    Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+    confirm.setTitle("Xác nhận xóa");
+    confirm.setContentText("Bạn có chắc muốn xóa phạm nhân: " 
+        + selected.getHoTen() + "?\nToàn bộ dữ liệu liên quan cũng sẽ bị xóa!");
     
     javafx.scene.control.Alert confirmAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
     confirmAlert.setTitle("Xác nhận xóa");

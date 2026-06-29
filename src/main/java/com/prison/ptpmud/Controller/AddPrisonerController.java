@@ -5,6 +5,9 @@
 package com.prison.ptpmud.Controller;
 import com.prison.ptpmud.Model.Prisoner;
 import DAO.PrisonerDao; 
+import database.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -45,23 +48,35 @@ public class AddPrisonerController {
        
         Prisoner p = new Prisoner(ma, hoTen, ngaySinh, toiDanh, khuGiam, trangThai, "");
 
-        try {
-           
-            boolean thanhCong = prisonerDao.save(p);
-            
-            if (thanhCong) {
-                hienThongBao("Thành công", "Đã thêm mới phạm nhân vào hệ thống!", Alert.AlertType.INFORMATION);
-                isSaved = true; 
-                dongCuaSo();   
-            } else {
-                hienThongBao("Thất bại", "Mã phạm nhân đã tồn tại, vui lòng kiểm tra lại!", Alert.AlertType.WARNING);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            hienThongBao("Lỗi hệ thống", "Không thể kết nối đến Cơ sở dữ liệu!", Alert.AlertType.ERROR);
-        }
-    }
+       
+             try {
+        Connection conn = DBConnection.getConnection();
+        System.out.println(">>> Conn: " + conn);
 
+        String sql = "INSERT INTO PhamNhan (MaPhamNhan, HoTen, NgaySinh, ToiDanh, KhuGiamGiu, TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, ma);
+        pst.setString(2, hoTen);
+        pst.setString(3, ngaySinh);
+        pst.setString(4, toiDanh);
+        pst.setString(5, khuGiam);
+        pst.setString(6, trangThai);
+
+        int result = pst.executeUpdate();
+        if (result > 0) {
+            hienThongBao("Thành công", "Đã thêm mới phạm nhân!", Alert.AlertType.INFORMATION);
+            isSaved = true;
+            dongCuaSo();
+        } else {
+            hienThongBao("Thất bại", "Mã phạm nhân đã tồn tại, vui lòng kiểm tra lại!", Alert.AlertType.WARNING);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println(">>> SQL Error: " + e.getMessage());
+        hienThongBao("Lỗi hệ thống", "Không thể kết nối đến Cơ sở dữ liệu!", Alert.AlertType.ERROR);
+    }
+}
    
     @FXML
     private void huy() {

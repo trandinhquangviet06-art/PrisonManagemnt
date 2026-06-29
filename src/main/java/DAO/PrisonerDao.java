@@ -110,19 +110,47 @@ public class PrisonerDao {
     }
 
     public boolean delete(String maPhamNhan) throws SQLException {
-        String sql = "DELETE FROM PhamNhan WHERE maPhamNhan = ?";
-
+        try {
         Connection conn = DBConnection.getConnection();
-        PreparedStatement pst = conn.prepareStatement(sql);
+       
+        String[] sqlXoaLienQuan = {
+            "DELETE FROM NguoiThan WHERE MaPhamNhan = ?",
+            "DELETE FROM DonXinTham WHERE MaPhamNhan = ?",
+            "DELETE FROM DuyetThamGap WHERE MaPhamNhan = ?",
+        };
+        
+        for (String sql : sqlXoaLienQuan) {
+            try {
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, maPhamNhan);
+                pst.executeUpdate();
+            } catch (SQLException e) {
+                
+                System.out.println("Bỏ qua: " + e.getMessage());
+            }
+        }
+        
+        
+        String sqlXoaPN = "DELETE FROM PhamNhan WHERE MaPhamNhan = ?";
+        PreparedStatement pst = conn.prepareStatement(sqlXoaPN);
         pst.setString(1, maPhamNhan);
-
-        return pst.executeUpdate() > 0;
+        int result = pst.executeUpdate();
+        
+        return result > 0;
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
     }
 
     public ArrayList<Prisoner> searchByName(String keyword) throws SQLException {
         ArrayList<Prisoner> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM PhamNhan WHERE hoTen LIKE ? OR maPhamNhan LIKE ?";
+
+          String sql = "SELECT * FROM PhamNhan WHERE " +
+                 "RIGHT(hoTen, LEN(hoTen) - LEN(LEFT(hoTen, LEN(hoTen) - CHARINDEX(' ', REVERSE(hoTen))))) LIKE ? " +
+                 "OR maPhamNhan LIKE ?";
 
         Connection conn = DBConnection.getConnection();
         PreparedStatement pst = conn.prepareStatement(sql);
