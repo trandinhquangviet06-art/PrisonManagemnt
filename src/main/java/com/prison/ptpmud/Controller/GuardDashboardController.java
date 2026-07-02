@@ -43,7 +43,7 @@ public class GuardDashboardController {
 
     @FXML
     private void xemLichThamGap(ActionEvent event) {
-        hienThiGiaoDienCon("/view/view_visit_schedule.fxml");
+        hienThiGiaoDienCon("/view/visit_schedule.fxml");
     }
 
     @FXML

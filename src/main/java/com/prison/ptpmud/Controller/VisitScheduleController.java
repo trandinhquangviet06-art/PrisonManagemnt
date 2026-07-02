@@ -55,7 +55,7 @@ public class VisitScheduleController implements Initializable{
         tbLichTham.setItems(danhSach);
  
        
-        cbCa.getItems().addAll("Tất cả", "Ca Sang", "Ca Chieu");
+        cbCa.getItems().addAll("Tất cả", "Ca Sáng", "Ca Chiều");
         cbCa.setValue("Tất cả");
  
       
@@ -82,9 +82,10 @@ public class VisitScheduleController implements Initializable{
                 sql.append(" AND CONVERT(varchar, NgayTham, 103) = ?");
             }
  
-            // Thêm điều kiện lọc ca nếu có
+            
             if (caLoc != null && !caLoc.equals("Tất cả")) {
-                sql.append(" AND CaTham LIKE ?");
+
+                   sql.append(" AND CaTham LIKE N'%' + ? + '%'");
             }
  
             sql.append(" ORDER BY NgayTham ASC");
@@ -98,7 +99,8 @@ public class VisitScheduleController implements Initializable{
                 pst.setString(index++, ngayLoc);
             }
             if (caLoc != null && !caLoc.equals("Tất cả")) {
-                pst.setString(index++, "%" + caLoc + "%");
+
+                   pst.setString(index++, caLoc);
             }
  
             ResultSet rs = pst.executeQuery();
